@@ -1,10 +1,9 @@
-import { faker } from '@faker-js/faker';
 import { globalData } from '../../../global.data';
 const currentDate = new Date();
 
 export const bUserCreateObj = {
     "AreaID": 0, // Район 0 - "Бриз"
-    "Name": faker.person.fullName(), // Имя пользователя
+    "Name": "Тестовый аккаунт", // Имя пользователя
     "StreetID": 9, // Улица 9 - Семена Палия
     "Dom": "108", // Номер дома
     "Flat": "555", // Номер квартиры 
