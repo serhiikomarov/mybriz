@@ -19,8 +19,9 @@ export async function getAuthToken(request) {
 test('Проверка функции получения токена авторизации в биллинге', async ({ request }) => {
   // Получаем токен с помощью вашей функции
     try {
-      expect(await getAuthToken(request)).toBeDefined()
-      console.log('Токен получен!');
+      const token = await getAuthToken(request)
+      expect(token).toBeDefined()
+      console.log(`Токен получен: ${token}`);
     } catch (error) {
       console.log('--- ОШИБКА: Токен не получен! ---');
     }
