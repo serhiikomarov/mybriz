@@ -20,7 +20,7 @@ test('Проверка функции получения токена автор
   // Получаем токен с помощью вашей функции
     try {
       expect(await getAuthToken(request)).toBeDefined()
-      console.log('Токен получен');
+      console.log('Токен получен!');
     } catch (error) {
       console.log('--- ОШИБКА: Токен не получен! ---');
     }
