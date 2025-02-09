@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { bUserCreateObj } from './bUserCreate.data';
-import { getAuthToken } from '../../auth/authenticate/auth.spec';
+import { getAuthToken } from '../../auth/authenticate/authUtils';
 
 // Функция создания пользователя в биллинге
-async function createBUser(request) {
+export async function createBUser(request) {
   const apiUrl = 'https://dev-bil-api.briz.ua/buser';
 
   const token = await getAuthToken(request);
@@ -22,12 +22,4 @@ async function createBUser(request) {
   return responseBody.data;
 }
 
-test('Проверка функции создания пользователя в биллинге', async ({ request }) => {
-  const responseBody = await createBUser(request)
-  try {
-    expect(responseBody).toBeGreaterThan(0);
-    console.log(`Пользователь ${responseBody} создан.`);
-  } catch (error) {
-    console.log('--- ОШИБКА: Пользователь не создан! ---');
-  }
-});
+

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { billingUserCredentials } from './auth.data';
+import { billingUserCredentials } from './authUtils.data';
 
 // Функция для получения токена авторизации в биллинге
 export async function getAuthToken(request) {
@@ -16,7 +16,7 @@ export async function getAuthToken(request) {
   return billingAuthToken;
 }
 
-test('Проверка функции получения токена авторизации в биллинге', async ({ request }) => {
+test('Проверка функции получения токена авторизации в биллинг', async ({ request }) => {
   // Получаем токен с помощью вашей функции
     try {
       const token = await getAuthToken(request)

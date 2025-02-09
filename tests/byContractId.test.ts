@@ -1,12 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { errorText } from '../testData/errors.data';
-import LoginPage from '../pages/authPage';
 
-test('authByContractId правильный номер договора и пароль', async ({ page }) => {
+test.only('authByContractId правильный номер договора и пароль', async ({ page }) => {
   await page.goto('https://devcabinet.briz.ua/login');
-  await page.locator('input[id="mui-2"]').fill(String(129999));
-  await page.locator('input[id="mui-3"]').fill(String(123456));
-  await page.locator('//*[@id="root"]/div[1]/div/div/main/div/div/div/form/button').click();
+  await page.locator('[type="text"]').fill(String(129999));
+  await page.locator('[type="password"]').fill(String(123456));
+  await page.locator('[type="submit"]').click();
 });
 
 // test('authByContractId валидный номер договора и пустой пароль UA', async ({ page }) => {
@@ -81,4 +79,4 @@ test('authByContractId правильный номер договора и па�
 //   await page.locator(authPageLocator.password).fill(String(userPassword.defaultPassword));
 //   await page.locator(authPageLocator.logInButton).click();
 //   await expect(page.locator(authPageLocator.helperEmptyLogin)).toHaveText(errorText.en.undefinedUser);
-// });
+// })
