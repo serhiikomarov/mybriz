@@ -11,7 +11,7 @@ export async function createBUser(request) {
   // Отправляем POST-запрос с email и паролем
   const response = await request.post(apiUrl, {
     headers: {
-      "Authorization": `Bearer ${token}`,  // Используем стандартный заголовок Authorization
+      "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     data: bUserCreateObj,

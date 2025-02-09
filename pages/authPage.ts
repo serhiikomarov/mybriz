@@ -1,16 +1,17 @@
 import { Page, Locator } from '@playwright/test';
 
 class LoginPage {
-    private page: Page;
-    private usernameInput: Locator;
-    private passwordInput: Locator;
-    private loginButton: Locator;
+    public page: Page;
+    public usernameInput: Locator;
+    public passwordInput: Locator;
+    public loginButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.usernameInput = page.locator('input[name="username"]');
-        this.passwordInput = page.locator('input[name="password"]');
-        this.loginButton = page.locator('button[type="submit"]');
+        this.usernameInput = page.locator('[type="text"]');
+        this.passwordInput = page.locator('[type="password"]');
+        this.loginButton = page.locator('[type="submit"]');
+
     }
 
     async login(username: string, password: string): Promise<void> {
@@ -19,7 +20,7 @@ class LoginPage {
         await this.loginButton.click();
     }
 
-    async navigateToLoginPage(url: string): Promise<void> {
+    async navigateToLoginPage(): Promise<void> {
         await this.page.goto('https://devcabinet.briz.ua/login');
     }
 }
