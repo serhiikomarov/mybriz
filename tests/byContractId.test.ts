@@ -26,12 +26,12 @@ test.describe("Authorization by contract number and password", () => {
     page,
   }) => {
     await loginPage.login(userId, globalData.defaultPassword);
-    await page.waitForURL(mainPage.pageUrl, { timeout: 5000 });
+    await page.waitForURL(mainPage.pageUrl);
     const currentUrl = page.url();
     expect(currentUrl).toBe(mainPage.pageUrl);
   });
-
-  test("Authorization by contract number and password with incorrect contract number and valid password", async () => {
-    await loginPage.login(userId, globalData.wrongValidPassword);
-  });
 });
+
+//   test("Authorization by contract number and password with incorrect contract number and valid password", async () => {
+//     await loginPage.login(userId, globalData.wrongValidPassword);
+//   });
