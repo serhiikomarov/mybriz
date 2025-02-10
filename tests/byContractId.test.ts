@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import LoginPage from "../pages/authPage";
 import MainPage from "../pages/mainPage";
 import { createBUser } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
+import { globalData } from "../fixtures/global.data";
 
 test.describe("Authorization by contract number and password", () => {
   let loginPage: LoginPage;
@@ -9,9 +10,9 @@ test.describe("Authorization by contract number and password", () => {
   let userId: string;
 
   test.beforeAll(async ({ browser }) => {
-    const context = await browser.newContext(); // создаем контекст браузера
-    const createdUser = await createBUser(context.request); // передаем объект request из контекста
-    userId = String(createdUser); // сохраняем userId
+    const context = await browser.newContext();
+    const createdUser = await createBUser(context.request);
+    userId = String(createdUser);
   });
 
   test.beforeEach(async ({ page }) => {
@@ -21,7 +22,16 @@ test.describe("Authorization by contract number and password", () => {
     await loginPage.navigateToLoginPage();
   });
 
-  test("authByContractId правильный номер договора и пароль", async () => {
-    await loginPage.login(userId, "123456");
+  test("Authorization by contract number and password with correct credentials", async ({
+    page,
+  }) => {
+    await loginPage.login(userId, globalData.defaultPassword);
+    await page.waitForURL(mainPage.pageUrl, { timeout: 5000 });
+    const currentUrl = page.url();
+    expect(currentUrl).toBe(mainPage.pageUrl);
+  });
+
+  test("Authorization by contract number and password with incorrect contract number and valid password", async () => {
+    await loginPage.login(userId, globalData.wrongValidPassword);
   });
 });
