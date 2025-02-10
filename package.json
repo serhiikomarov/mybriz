@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@faker-js/faker": "^9.4.0",
     "@playwright/test": "^1.50.1",
     "playwright": "^1.50.1"
   }
