@@ -1,20 +1,19 @@
 import { expect } from "@playwright/test";
-import { bUserCreateObj } from "./bUserCreate.data";
+import { defaultUserCreateObj } from "./bUserCreate.data";
 import { getAuthToken } from "../../auth/authenticate/authUtils";
 
-// Функция создания пользователя в биллинге
-export async function createBUser(request) {
+export async function createBUser(request: any, modifiedData?: any) {
   const apiUrl = "https://dev-bil-api.briz.ua/buser";
 
   const token = await getAuthToken(request);
+  const requestData = modifiedData || defaultUserCreateObj;
   console.log(token);
-  // Отправляем POST-запрос с email и паролем
   const response = await request.post(apiUrl, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    data: bUserCreateObj,
+    data: requestData,
   });
 
   const responseBody = await response.json();
