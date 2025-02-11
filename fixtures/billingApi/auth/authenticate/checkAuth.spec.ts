@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { getAuthToken } from "../../auth/authenticate/authUtils";
 
-test("Проверка функции получения токена авторизации в биллинге", async ({
+test("Checking the function of authorization token in billing", async ({
   request,
 }) => {
   try {
