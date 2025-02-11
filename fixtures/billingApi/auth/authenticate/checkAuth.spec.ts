@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { getAuthToken } from "./authUtils";
+import { getAuthToken } from "../../auth/authenticate/authUtils";
 
 test("Проверка функции получения токена авторизации в биллинге", async ({
   request,

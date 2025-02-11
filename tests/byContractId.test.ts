@@ -16,8 +16,8 @@ test.describe("Authorization by contract number and password", () => {
     const modifiedData = {
       Password: modifiedPassword,
     };
-    const context = await browser.newContext();
     const userDataObj = { ...defaultUserCreateObj, ...modifiedData };
+    const context = await browser.newContext();
     const createdUser = await createBUser(context.request, userDataObj);
     userID = String(createdUser);
   });
