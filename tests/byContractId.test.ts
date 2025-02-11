@@ -8,7 +8,7 @@ import { defaultUserCreateObj } from "../fixtures/billingApi/bUser/bUserCreate/b
 test.describe("Authorization by contract number and password", () => {
   let loginPage: LoginPage;
   let mainPage: MainPage;
-  let userId: string;
+  let userID: string;
   let modifiedPassword: string;
 
   test.beforeAll(async ({ browser }) => {
@@ -19,7 +19,7 @@ test.describe("Authorization by contract number and password", () => {
     const context = await browser.newContext();
     const userDataObj = { ...defaultUserCreateObj, ...modifiedData };
     const createdUser = await createBUser(context.request, userDataObj);
-    userId = String(createdUser);
+    userID = String(createdUser);
   });
 
   test.beforeEach(async ({ page }) => {
@@ -31,7 +31,7 @@ test.describe("Authorization by contract number and password", () => {
   test("Authorization by contract number and password with correct credentials", async ({
     page,
   }) => {
-    await loginPage.login(userId, modifiedPassword);
+    await loginPage.login(userID, modifiedPassword);
     await page.waitForURL(mainPage.pageUrl);
     const currentUrl = page.url();
     expect(currentUrl).toBe(mainPage.pageUrl);
