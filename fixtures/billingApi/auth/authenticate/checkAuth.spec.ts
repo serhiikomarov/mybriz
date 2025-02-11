@@ -7,8 +7,8 @@ test("Checking the function of authorization token in billing", async ({
   try {
     const token = await getAuthToken(request);
     expect(token).toBeDefined();
-    console.log(`Токен получен: ${token}`);
+    console.log(`Token has been received: ${token}`);
   } catch (error) {
-    console.log("--- ОШИБКА: Токен не получен! ---");
+    console.log("--- ERROR: Token not received. ---");
   }
 });

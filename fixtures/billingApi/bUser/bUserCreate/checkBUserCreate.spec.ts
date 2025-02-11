@@ -5,8 +5,8 @@ test("Checking user creation function in billing", async ({ request }) => {
   const responseBody = await createBUser(request);
   try {
     expect(responseBody).toBeGreaterThan(0);
-    console.log(`Пользователь ${responseBody} создан.`);
+    console.log(`User ${responseBody} has been created.`);
   } catch (error) {
-    console.log("--- ОШИБКА: Пользователь не создан! ---");
+    console.log("--- ERROR: User not created. ---");
   }
 });

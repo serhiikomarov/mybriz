@@ -1,30 +1,15 @@
 import { test, expect } from "@playwright/test";
 import { billingUserCredentials } from "./authUtils.data";
 
-// Функция для получения токена авторизации в биллинге
 export async function getAuthToken(request) {
   const apiUrl = "https://dev-bil-api.briz.ua/api/authenticate";
 
-  // Отправляем POST-запрос с email и паролем
   const response = await request.post(apiUrl, {
     data: billingUserCredentials,
   });
 
   const responseBody = await response.json();
   const billingAuthToken = responseBody.data.token;
-  expect(billingAuthToken, "Ошибка получения токена").toBeDefined();
+  expect(billingAuthToken, "--- ERROR: Token not received. ---").toBeDefined();
   return billingAuthToken;
 }
-
-test("Проверка функции получения токена авторизации в биллинг", async ({
-  request,
-}) => {
-  // Получаем токен с помощью вашей функции
-  try {
-    const token = await getAuthToken(request);
-    expect(token).toBeDefined();
-    console.log(`Токен получен: ${token}`);
-  } catch (error) {
-    console.log("--- ОШИБКА: Токен не получен! ---");
-  }
-});
