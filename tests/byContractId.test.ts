@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
 import LoginPage from "../pages/authPage";
 import MainPage from "../pages/mainPage";
-import { createBUser } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
+import { createBUser } from "../fixtures/billingAPI/bUser/bUserCreate/bUserCreateUtils";
 import { globalData } from "../fixtures/global.data";
-import { defaultUserCreateObj } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreate.data";
+import { defaultUserCreateObj } from "../fixtures/billingAPI/bUser/bUserCreate/bUserCreate.data";
 import { errorMessages } from "../testData/errors.data";
 import { testData } from "../testData/test.data";
 
