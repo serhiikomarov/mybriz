@@ -4,6 +4,7 @@ import MainPage from "../pages/mainPage";
 import { createBUser } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
 import { globalData } from "../fixtures/global.data";
 import { defaultUserCreateObj } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreate.data";
+import { errorMessages } from "../testData/errors.data";
 
 test.describe("Authorization by contract number and password", () => {
   let loginPage: LoginPage;
@@ -28,16 +29,47 @@ test.describe("Authorization by contract number and password", () => {
     await loginPage.navigateToLoginPage();
   });
 
-  test("Authorization by contract number and password with correct credentials", async ({
-    page,
-  }) => {
+  test("Authorization by contract number and password with correct credentials", async ({ page }) => {
     await loginPage.login(userID, modifiedPassword);
     await page.waitForURL(mainPage.pageUrl);
     const currentUrl = page.url();
     expect(currentUrl).toBe(mainPage.pageUrl);
+  });
+
+  test("Authorization by contract number and password case-sensitive password check", async ({ page }) => {
+    await loginPage.login(userID, modifiedPassword.toUpperCase());
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
   });
 });
 
 //   test("Authorization by contract number and password with incorrect contract number and valid password", async () => {
 //     await loginPage.login(userId, globalData.wrongValidPassword);
 //   });
+
+// Позитивные
+
+// 1. Авторизация с правильными данными +
+// 2. Проверка пароля с учетом регистра
+// 3. Авторизация с минимально допустимы данными
+// 4. Авторизация с максимально допустимыми данными
+
+// Негативные
+
+// 1. Пустые инпуты (пустой логин / пустой пароль)
+// 2. Неправильный логин
+// 3. Неправильным пароль
+// 4. Логин с пробелами в начале или в конце
+// 5. Пароль с пробелами в начале или в конце
+// 6. Поменять пароль и логин местами
+
+// Граничные
+
+// 1. Логин короче
+// 2. Логин длиннее
+// 3. Пароль короче
+// 4. Пароль длиннее
+
+// Дополнительные
+
+// Проверка при нажатии Enter
+// Проверка маскирования пароля

@@ -4,14 +4,18 @@ class LoginPage {
   public page: Page;
   public pageUrl: string;
   public usernameInput: Locator;
+  public usernameInputHelper: Locator;
   public passwordInput: Locator;
+  public passwordInputHelper: Locator;
   public loginButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.pageUrl = "https://devcabinet.briz.ua/login";
     this.usernameInput = page.locator('[type="text"]');
+    this.usernameInputHelper = page.locator("#mui-1-helper-text");
     this.passwordInput = page.locator('[type="password"]');
+    this.passwordInputHelper = page.locator('[id="mui-8-helper-text]');
     this.loginButton = page.locator('[type="submit"]');
   }
 
