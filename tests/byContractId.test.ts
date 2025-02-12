@@ -74,6 +74,11 @@ test.describe("Authorization by contract number and password", () => {
     await loginPage.login(userID1, globalData.invalid17DigitsPassword);
     await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.passwordIsLong);
   });
+
+  test("Authorization by contract number and password with swapped login and password fields", async () => {
+    await loginPage.login(globalData.defaultPassword, userID1);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
+  });
 });
 
 // Негативные
@@ -82,14 +87,11 @@ test.describe("Authorization by contract number and password", () => {
 // 2. Неправильный логин
 // 4. Логин с пробелами в начале или в конце
 // 5. Пароль с пробелами в начале или в конце
-// 6. Поменять пароль и логин местами
 
 // Граничные
 
 // 1. Логин короче
 // 2. Логин длиннее
-// 3. Пароль короче +
-// 4. Пароль длиннее
 
 // Дополнительные
 
