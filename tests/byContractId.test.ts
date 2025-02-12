@@ -91,7 +91,7 @@ test.describe("Authorization by contract number and password", () => {
 // Граничные
 
 // 1. Логин короче
-// 2. Логин длиннее
+// 2. Логин длиннее (неверное значение)
 
 // Дополнительные
 
