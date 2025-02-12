@@ -16,13 +16,9 @@
     "preserveOutput": "always",
     "reporter": [
       [
-        "dot",
-        null
-      ],
-      [
         "json",
         {
-          "outputFile": "test-results.json"
+          "outputFile": "report.json"
         }
       ]
     ],
@@ -83,25 +79,25 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 5621,
+                      "duration": 5432,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247376/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247346/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6InJsR3c1Q1o0WUxtTkJuMGYiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.6VzoHpUhNa1CtYMMbljtYLtg7vV6iPHjjMBbt1LaGak\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MCwiZXhwIjoxNzM5NDc0MTYwLCJuYmYiOjE3MzkzODc3NjAsImp0aSI6IkZ5eVdKZnkxUUpyWDVQU2ciLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.tfTYQzpk1wRziyTvpf0NuEAJV8jult07U-WmPzecNIY\n"
                         },
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247380/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247350/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6ImZobE0wODRiNUsyZjA0a2UiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.UqOukPFedhKVfpmUO1K7oX0Jth7SYTa6YR6sihLPuw8\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MSwiZXhwIjoxNzM5NDc0MTYxLCJuYmYiOjE3MzkzODc3NjEsImp0aSI6Im45WGcydUREa1BYdVU0MHgiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Bax2Tjgvn-CeLBTL366tOuRj3HxQSFprC8Ftu8-bH6Q\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:43.896Z",
+                      "startTime": "2025-02-12T19:15:59.912Z",
                       "attachments": []
                     }
                   ],
@@ -128,12 +124,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 4666,
+                      "duration": 3353,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:50.919Z",
+                      "startTime": "2025-02-12T19:16:06.711Z",
                       "attachments": []
                     }
                   ],
@@ -160,12 +156,12 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 2397,
+                      "duration": 1932,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:55.588Z",
+                      "startTime": "2025-02-12T19:16:10.074Z",
                       "attachments": []
                     }
                   ],
@@ -192,25 +188,25 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 4889,
+                      "duration": 4301,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247375/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247347/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6IlF4b2xlSkFBMHBQdTJFUnIiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.QvgQ2K9XTWPCNsJCVMMk2mEahBojmJEKgglUKu2raxg\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MCwiZXhwIjoxNzM5NDc0MTYwLCJuYmYiOjE3MzkzODc3NjAsImp0aSI6Ilo1RE9BdWJaYnpod3UwYkEiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.D0tzGn--6SHP9A75wReoNdvqp9MFiqtpiSnCOs1RIyE\n"
                         },
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247379/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247351/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6IlpMcTl3dnl2UWtoQXMxR0EiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.cnxRHRGQ2X9m7VdmrBPnRUVo9mrwbtm48LFHo5wU7Pc\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MSwiZXhwIjoxNzM5NDc0MTYxLCJuYmYiOjE3MzkzODc3NjEsImp0aSI6IkF3UWlMVDNMWUNtOGt4VTAiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.bV_t_I7rwHHvO2rI_7EK1NoXYqx4lZLX6MVfV_NCSlw\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:43.915Z",
+                      "startTime": "2025-02-12T19:15:59.897Z",
                       "attachments": []
                     }
                   ],
@@ -237,12 +233,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 4213,
+                      "duration": 3477,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:50.189Z",
+                      "startTime": "2025-02-12T19:16:05.563Z",
                       "attachments": []
                     }
                   ],
@@ -269,12 +265,12 @@
                     {
                       "workerIndex": 1,
                       "status": "passed",
-                      "duration": 2403,
+                      "duration": 2274,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:54.408Z",
+                      "startTime": "2025-02-12T19:16:09.044Z",
                       "attachments": []
                     }
                   ],
@@ -301,25 +297,25 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 4471,
+                      "duration": 4012,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247373/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247349/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6InV2eGJYRHYwVE5jRjBpWE8iLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.VU3lTmPifhtjAjdmc6qK65j-xNLLobSUULRKEiwxGD8\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MCwiZXhwIjoxNzM5NDc0MTYwLCJuYmYiOjE3MzkzODc3NjAsImp0aSI6IjJkeHZnaVRpdkpFTjFpN3EiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Ti0jCvw4ygLmyKVzzGlcfyzZxyXvdPC1rAdOmAQU2dg\n"
                         },
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247377/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247352/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6IlhEdW16bjVoZUhXSm9NQVUiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.jfD6hNR38MyStg6p2iZSvpFlXWiAvfc8LpNgCWhfV4I\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MSwiZXhwIjoxNzM5NDc0MTYxLCJuYmYiOjE3MzkzODc3NjEsImp0aSI6InVSV3RvbjRuNElJQmpacnkiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.15kMYDhsF2-K3J4tFg1TfixmnrcMhTgYNwk7VyTncl8\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:43.910Z",
+                      "startTime": "2025-02-12T19:15:59.887Z",
                       "attachments": []
                     }
                   ],
@@ -346,12 +342,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 3770,
+                      "duration": 2840,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:49.759Z",
+                      "startTime": "2025-02-12T19:16:05.274Z",
                       "attachments": []
                     }
                   ],
@@ -378,12 +374,12 @@
                     {
                       "workerIndex": 2,
                       "status": "passed",
-                      "duration": 3195,
+                      "duration": 2175,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:53.540Z",
+                      "startTime": "2025-02-12T19:16:08.121Z",
                       "attachments": []
                     }
                   ],
@@ -410,25 +406,25 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 4720,
+                      "duration": 4203,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247374/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247348/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6IkF1S1c5QzdxMW1vc3pHb0EiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.qH9Qjb7hpbYCK7mX8o3-C61VWkf_R-blagWmp38Ff5o\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MCwiZXhwIjoxNzM5NDc0MTYwLCJuYmYiOjE3MzkzODc3NjAsImp0aSI6InVYa0FncEFBenFMMWN3U04iLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.dELHPRnn1639KMONicxzmQEVziEdC3uXrTTircMvInk\n"
                         },
                         {
-                          "text": "https://dev-bil-api.briz.ua/buser/247378/password/update\n"
+                          "text": "https://dev-bil-api.briz.ua/buser/247353/password/update\n"
                         },
                         {
-                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4ODc2NSwiZXhwIjoxNzM5NDc1MTY1LCJuYmYiOjE3MzkzODg3NjUsImp0aSI6ImRoYXNkTnAxdHBNZEUyemIiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.EJhmnL9PX4cMLftUHF5SPK57B4Qy9E1KxlaRoj-RpNs\n"
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4Nzc2MSwiZXhwIjoxNzM5NDc0MTYxLCJuYmYiOjE3MzkzODc3NjEsImp0aSI6IjJOYTRNT1RWT1hMZU10a0UiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Jh1T_nLrHE8nOFwBxzRQJx6d2YeKaRsfe2YLYSuA2hg\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:43.897Z",
+                      "startTime": "2025-02-12T19:15:59.893Z",
                       "attachments": []
                     }
                   ],
@@ -455,12 +451,12 @@
                     {
                       "workerIndex": 3,
                       "status": "passed",
-                      "duration": 3533,
+                      "duration": 2580,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-02-12T19:32:50.007Z",
+                      "startTime": "2025-02-12T19:16:05.482Z",
                       "attachments": []
                     }
                   ],
@@ -479,8 +475,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-02-12T19:32:43.558Z",
-    "duration": 14457.922,
+    "startTime": "2025-02-12T19:15:59.551Z",
+    "duration": 12481.095000000001,
     "expected": 11,
     "skipped": 0,
     "unexpected": 0,
