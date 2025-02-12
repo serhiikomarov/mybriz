@@ -32,8 +32,6 @@ test.describe("Authorization by contract number and password", () => {
   test("Authorization by contract number and password with correct credentials", async ({ page }) => {
     await loginPage.login(userID, modifiedPassword);
     await page.waitForURL(mainPage.pageUrl);
-    const currentUrl = page.url();
-    expect(currentUrl).toBe(mainPage.pageUrl);
   });
 
   test("Authorization by contract number and password case-sensitive password check", async ({ page }) => {
@@ -42,14 +40,10 @@ test.describe("Authorization by contract number and password", () => {
   });
 });
 
-//   test("Authorization by contract number and password with incorrect contract number and valid password", async () => {
-//     await loginPage.login(userId, globalData.wrongValidPassword);
-//   });
-
 // Позитивные
 
 // 1. Авторизация с правильными данными +
-// 2. Проверка пароля с учетом регистра
+// 2. Проверка пароля с учетом регистра +
 // 3. Авторизация с минимально допустимы данными
 // 4. Авторизация с максимально допустимыми данными
 
@@ -57,7 +51,6 @@ test.describe("Authorization by contract number and password", () => {
 
 // 1. Пустые инпуты (пустой логин / пустой пароль)
 // 2. Неправильный логин
-// 3. Неправильным пароль
 // 4. Логин с пробелами в начале или в конце
 // 5. Пароль с пробелами в начале или в конце
 // 6. Поменять пароль и логин местами
