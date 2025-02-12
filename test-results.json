@@ -1,0 +1,489 @@
+{
+  "config": {
+    "configFile": "/Users/trmn/Desktop/mybriz/mybriz/playwright.config.ts",
+    "rootDir": "/Users/trmn/Desktop/mybriz/mybriz",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "dot",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/trmn/Desktop/mybriz/mybriz/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "",
+        "name": "",
+        "testDir": "/Users/trmn/Desktop/mybriz/mybriz",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.50.1",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests/byContractId.test.ts",
+      "file": "tests/byContractId.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authorization by contract number and password",
+          "file": "tests/byContractId.test.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Authorization by contract number and password with minimum length password",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 5056,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247281/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MiwiZXhwIjoxNzM5NDcxODYyLCJuYmYiOjE3MzkzODU0NjIsImp0aSI6IlY3cUg0bW9XdTBNdVpkckgiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.HqBiKZu68q1kUtDY2tp6c9FPY9-J4LSWMvR_YB8gR54\n"
+                        },
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247284/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MywiZXhwIjoxNzM5NDcxODYzLCJuYmYiOjE3MzkzODU0NjMsImp0aSI6ImMxMFF4WmtQTTkwa1NmdzgiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.uOrhI4WbCLmVgMwqmP-iqkrLhcGgANsAF3KYg4FV8JM\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:41.857Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-c1c6ae791c2a4d18ef0a",
+              "file": "tests/byContractId.test.ts",
+              "line": 35,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and password with the maximum length password",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 4028,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:48.370Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-eb19b671176e9e64c59c",
+              "file": "tests/byContractId.test.ts",
+              "line": 40,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and password case-sensitive password check UA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 2012,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:52.404Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-aa8cc6abfad61527154c",
+              "file": "tests/byContractId.test.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and password case-sensitive password check EN",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 4424,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247279/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MiwiZXhwIjoxNzM5NDcxODYyLCJuYmYiOjE3MzkzODU0NjIsImp0aSI6ImJaNXpGbXVvVzVEUDQ3UmkiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.VAXDvbCUpCGaP0W3Qq7L4OIdm8L0bM9d3s3Y7xSTotE\n"
+                        },
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247283/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MywiZXhwIjoxNzM5NDcxODYzLCJuYmYiOjE3MzkzODU0NjMsImp0aSI6IlloeXA3THFIcFpCemQzelEiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.5vYLp5EoBrF57gpLukvp6DRdwljHNZsH7qu4TgI4xm8\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:41.843Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-7613c5fbd9210a8a6ec4",
+              "file": "tests/byContractId.test.ts",
+              "line": 50,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and invalid short password UA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 2437,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:47.738Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-f79809ca7f9b0917e49a",
+              "file": "tests/byContractId.test.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and invalid short password EN",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "passed",
+                      "duration": 2047,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:50.179Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-c67323ad14b8e2ecaa5f",
+              "file": "tests/byContractId.test.ts",
+              "line": 61,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and invalid long password UA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "status": "passed",
+                      "duration": 4092,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247278/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MiwiZXhwIjoxNzM5NDcxODYyLCJuYmYiOjE3MzkzODU0NjIsImp0aSI6InZGRXBYR0xaaTBBY3IwVFEiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.gtj7PSWCx-ZU6N5ElgrYsfT78l90tqWMRZ1slM3JLOc\n"
+                        },
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247282/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MywiZXhwIjoxNzM5NDcxODYzLCJuYmYiOjE3MzkzODU0NjMsImp0aSI6ImJTRFhkOVh5WGc3Y1EzWmUiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.0qr-60z-4Rdg149jllD5vSqT_4n6H5lO4xflMNjG5O4\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:41.849Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-710b1ce1406fd3d4be82",
+              "file": "tests/byContractId.test.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and invalid long password EN",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "status": "passed",
+                      "duration": 2671,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:47.413Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-911759a23f149f53e9f8",
+              "file": "tests/byContractId.test.ts",
+              "line": 72,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and password with swapped login and password fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "status": "passed",
+                      "duration": 1894,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:50.088Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-d5b59c540d3c72289555",
+              "file": "tests/byContractId.test.ts",
+              "line": 78,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and password with with empty inputs UA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "status": "passed",
+                      "duration": 3838,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247280/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MiwiZXhwIjoxNzM5NDcxODYyLCJuYmYiOjE3MzkzODU0NjIsImp0aSI6Ilc1dWVCVTJYc1kwbGFBSk0iLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.QuwV8h3iByWDi4iqaI0V3tAozDc5EGrRtjPDblIx1q0\n"
+                        },
+                        {
+                          "text": "https://dev-bil-api.briz.ua/buser/247285/password/update\n"
+                        },
+                        {
+                          "text": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rldi1iaWwtYXBpLmJyaXoudWEvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTczOTM4NTQ2MywiZXhwIjoxNzM5NDcxODYzLCJuYmYiOjE3MzkzODU0NjMsImp0aSI6InFhN0ROaVMxYkw0ZXI0bGQiLCJzdWIiOiI1OCIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z8T7lstIQidHl0CiGRSqE8PwbpQb29pYKir-zgJMcOI\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:41.861Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-fdd04d5742f04c4c6da0",
+              "file": "tests/byContractId.test.ts",
+              "line": 83,
+              "column": 7
+            },
+            {
+              "title": "Authorization by contract number and password with with empty inputs EN",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "status": "passed",
+                      "duration": 2689,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-02-12T18:37:47.139Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5b0b9320cc2d3c8e8d60-5747efb01274544a7f50",
+              "file": "tests/byContractId.test.ts",
+              "line": 89,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-02-12T18:37:41.484Z",
+    "duration": 12960.333,
+    "expected": 11,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
