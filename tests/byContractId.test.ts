@@ -6,22 +6,25 @@ import { globalData } from "../fixtures/global.data";
 import { defaultUserCreateObj } from "../fixtures/billingAPI/bUser/bUserCreate/bUserCreate.data";
 import { errorMessages } from "../testData/errors.data";
 import { testData } from "../testData/test.data";
+import { updatePassword } from "../fixtures/billingAPI/bUser/updatePassword/updatePasswordUtils";
 
 test.describe("Authorization by contract number and password", () => {
   let loginPage: LoginPage;
   let mainPage: MainPage;
-  let userID: string;
+  let userID1: string;
+  let userID2: string;
+  let userID3: string;
   let modifiedPassword: string;
 
   test.beforeAll(async ({ browser }) => {
-    modifiedPassword = "password112233";
-    const modifiedData = {
-      Password: modifiedPassword,
-    };
-    const userDataObj = { ...defaultUserCreateObj, ...modifiedData };
     const context = await browser.newContext();
-    const createdUser = await createBUser(context.request, userDataObj);
-    userID = String(createdUser);
+    // Create user with defaultPassword (6-digit password)
+    userID1 = String(await createBUser(context.request));
+    // Create user with alterativePassword (digits and lowercase letters)
+    userID2 = String(await createBUser(context.request));
+    await updatePassword(context.request, userID2, globalData.alternativePassword);
+    // Create user with maxLengthPassword (16-character password)
+    userID3 = String(await createBUser(context.request));
   });
 
   test.beforeEach(async ({ page }) => {
@@ -31,18 +34,18 @@ test.describe("Authorization by contract number and password", () => {
   });
 
   test("Authorization by contract number and password with correct credentials", async ({ page }) => {
-    await loginPage.login(userID, modifiedPassword);
+    await loginPage.login(userID1, globalData.defaultPassword);
     await page.waitForURL(mainPage.pageUrl);
   });
 
-  test("Authorization by contract number and password case-sensitive password check UA", async ({ page }) => {
-    await loginPage.login(userID, modifiedPassword.toUpperCase());
+  test("Authorization by contract number and password case-sensitive password check UA", async () => {
+    await loginPage.login(userID2, globalData.alternativePassword.toUpperCase());
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
   });
 
   test("Authorization by contract number and password case-sensitive password check EN", async ({ page }) => {
     await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
-    await loginPage.login(userID, modifiedPassword.toUpperCase());
+    await loginPage.login(userID2, globalData.alternativePassword.toUpperCase());
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.undefinedUser);
   });
 });

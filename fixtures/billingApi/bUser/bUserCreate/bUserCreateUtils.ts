@@ -7,7 +7,6 @@ export async function createBUser(request: any, modifiedData?: any) {
 
   const token = await getAuthToken(request);
   const requestData = modifiedData || defaultUserCreateObj;
-  console.log(token);
   const response = await request.post(apiUrl, {
     headers: {
       Authorization: `Bearer ${token}`,
