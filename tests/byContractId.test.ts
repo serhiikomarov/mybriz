@@ -5,6 +5,7 @@ import { createBUser } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreat
 import { globalData } from "../fixtures/global.data";
 import { defaultUserCreateObj } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreate.data";
 import { errorMessages } from "../testData/errors.data";
+import { testData } from "../testData/test.data";
 
 test.describe("Authorization by contract number and password", () => {
   let loginPage: LoginPage;
@@ -34,9 +35,15 @@ test.describe("Authorization by contract number and password", () => {
     await page.waitForURL(mainPage.pageUrl);
   });
 
-  test("Authorization by contract number and password case-sensitive password check", async ({ page }) => {
+  test("Authorization by contract number and password case-sensitive password check UA", async ({ page }) => {
     await loginPage.login(userID, modifiedPassword.toUpperCase());
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
+  });
+
+  test("Authorization by contract number and password case-sensitive password check EN", async ({ page }) => {
+    await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+    await loginPage.login(userID, modifiedPassword.toUpperCase());
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.undefinedUser);
   });
 });
 
