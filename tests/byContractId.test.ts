@@ -1,11 +1,10 @@
 import { test, expect } from "@playwright/test";
 import LoginPage from "../pages/authPage";
 import MainPage from "../pages/mainPage";
-import { createBUser } from "../fixtures/billingAPI/bUser/bUserCreate/bUserCreateUtils";
 import { globalData } from "../fixtures/global.data";
-import { defaultUserCreateObj } from "../fixtures/billingAPI/bUser/bUserCreate/bUserCreate.data";
-import { errorMessages } from "../testData/errors.data";
 import { testData } from "../testData/test.data";
+import { errorMessages } from "../testData/errors.data";
+import { createBUser } from "../fixtures/billingAPI/bUser/bUserCreate/bUserCreateUtils";
 import { updatePassword } from "../fixtures/billingAPI/bUser/updatePassword/updatePasswordUtils";
 
 test.describe("Authorization by contract number and password", () => {
@@ -14,7 +13,6 @@ test.describe("Authorization by contract number and password", () => {
   let userID1: string;
   let userID2: string;
   let userID3: string;
-  let modifiedPassword: string;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
@@ -25,6 +23,7 @@ test.describe("Authorization by contract number and password", () => {
     await updatePassword(context.request, userID2, globalData.alternativePassword);
     // Create user with maxLengthPassword (16-character password)
     userID3 = String(await createBUser(context.request));
+    await updatePassword(context.request, userID3, globalData.maxLengthPassword);
   });
 
   test.beforeEach(async ({ page }) => {
@@ -33,8 +32,13 @@ test.describe("Authorization by contract number and password", () => {
     await loginPage.navigateToLoginPage();
   });
 
-  test("Authorization by contract number and password with correct credentials", async ({ page }) => {
+  test("Authorization by contract number and password with minimum length password", async ({ page }) => {
     await loginPage.login(userID1, globalData.defaultPassword);
+    await page.waitForURL(mainPage.pageUrl);
+  });
+
+  test("Authorization by contract number and password with the maximum length password", async ({ page }) => {
+    await loginPage.login(userID3, globalData.maxLengthPassword);
     await page.waitForURL(mainPage.pageUrl);
   });
 
@@ -48,14 +52,29 @@ test.describe("Authorization by contract number and password", () => {
     await loginPage.login(userID2, globalData.alternativePassword.toUpperCase());
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.undefinedUser);
   });
+
+  test("Authorization by contract number and invalid short password UA", async () => {
+    await loginPage.login(userID1, globalData.invalid5DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.passwordIsShort);
+  });
+
+  test("Authorization by contract number and invalid short password EN", async ({ page }) => {
+    await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+    await loginPage.login(userID1, globalData.invalid5DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.passwordIsShort);
+  });
+
+  test("Authorization by contract number and invalid long password UA", async () => {
+    await loginPage.login(userID1, globalData.invalid17DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.passwordIsLong);
+  });
+
+  test("Authorization by contract number and invalid long password EN", async ({ page }) => {
+    await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+    await loginPage.login(userID1, globalData.invalid17DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.passwordIsLong);
+  });
 });
-
-// Позитивные
-
-// 1. Авторизация с правильными данными +
-// 2. Проверка пароля с учетом регистра +
-// 3. Авторизация с минимально допустимы данными
-// 4. Авторизация с максимально допустимыми данными
 
 // Негативные
 
@@ -69,7 +88,7 @@ test.describe("Authorization by contract number and password", () => {
 
 // 1. Логин короче
 // 2. Логин длиннее
-// 3. Пароль короче
+// 3. Пароль короче +
 // 4. Пароль длиннее
 
 // Дополнительные

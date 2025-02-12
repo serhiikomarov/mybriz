@@ -15,7 +15,7 @@ class LoginPage {
     this.usernameInput = page.locator('[type="text"]');
     this.usernameInputHelper = page.locator("#mui-1-helper-text");
     this.passwordInput = page.locator('[type="password"]');
-    this.passwordInputHelper = page.locator('[id="mui-8-helper-text]');
+    this.passwordInputHelper = page.locator("#mui-2-helper-text");
     this.loginButton = page.locator('[type="submit"]');
   }
 
