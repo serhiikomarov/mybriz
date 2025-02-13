@@ -80,13 +80,13 @@ test.describe("Authorization by contract number and password", () => {
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
   });
 
-  test("Authorization by contract number and password with with empty inputs UA", async () => {
+  test("Authorization by contract number and password with empty inputs UA", async () => {
     await loginPage.login(globalData.emptyString, globalData.emptyString);
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.fieldRequired);
     await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.fieldRequired);
   });
 
-  test("Authorization by contract number and password with with empty inputs EN", async ({ page }) => {
+  test("Authorization by contract number and password with empty inputs EN", async ({ page }) => {
     await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
     await loginPage.login(globalData.emptyString, globalData.emptyString);
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.fieldRequired);
