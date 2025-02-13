@@ -75,7 +75,7 @@ test.describe("Authorization by contract number and password", () => {
     await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.passwordIsLong);
   });
 
-  test("Authorization by contract number and password with swapped login and password fields", async () => {
+  test("Authorization by contract number and password with swapped fields", async () => {
     await loginPage.login(globalData.defaultPassword, userID1);
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
   });
@@ -92,16 +92,26 @@ test.describe("Authorization by contract number and password", () => {
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.fieldRequired);
     await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.fieldRequired);
   });
+
+  test("Authorization by contract number with a space at the beginning UA", async () => {
+    await loginPage.login(` ${userID1}`, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidLogin);
+  });
+
+  test("Authorization by contract number with a space at the beginning EN", async ({ page }) => {
+    await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+    await loginPage.login(` ${userID1}`, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidLogin);
+  });
+
+  test("Authorization by contract number with a space at the end UA", async () => {
+    await loginPage.login(`${userID1} `, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidLogin);
+  });
+
+  test("Authorization by contract number with a space at the endEN", async ({ page }) => {
+    await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+    await loginPage.login(`${userID1} `, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidLogin);
+  });
 });
-
-// Негативные:
-// - логин с пробелами в начале или в конце
-// - пароль с пробелами в начале или в конце
-
-// Граничные:
-// - логин короче
-// - логин длиннее (неверное значение)
-
-// Дополнительные:
-// - проверка при нажатии Enter
-// - проверка маскирования пароля
