@@ -3,7 +3,6 @@ import { getAuthToken } from "../../auth/authenticate/authUtils";
 
 export async function updatePassword(request: any, userID: string, newPassword: string) {
   const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/password/update`;
-  console.log(apiUrl);
   const token = await getAuthToken(request);
   console.log(token);
   const response = await request.put(apiUrl, {

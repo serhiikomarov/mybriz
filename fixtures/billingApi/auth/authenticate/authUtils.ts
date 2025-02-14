@@ -1,9 +1,8 @@
-import { test, expect } from "@playwright/test";
+import { expect } from "@playwright/test";
 import { billingUserCredentials } from "./authUtils.data";
 
 export async function getAuthToken(request: any) {
   const apiUrl = "https://dev-bil-api.briz.ua/api/authenticate";
-
   const response = await request.post(apiUrl, {
     data: billingUserCredentials,
   });

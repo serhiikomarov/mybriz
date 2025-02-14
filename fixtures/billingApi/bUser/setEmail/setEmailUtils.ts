@@ -3,7 +3,6 @@ import { getAuthToken } from "../../auth/authenticate/authUtils";
 
 export async function addEmail(request: any, userID: string, email: string) {
   const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/email/add`;
-  console.log(apiUrl);
   const token = await getAuthToken(request);
   console.log(token);
   const response = await request.post(apiUrl, {
