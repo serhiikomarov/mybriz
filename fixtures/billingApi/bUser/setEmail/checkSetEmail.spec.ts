@@ -9,13 +9,14 @@ test.describe("Checking addEmail function", () => {
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const createdUser = await createBUser(context.request);
-    userID = String(createdUser);
+    userID = String(createdUser.data);
   });
 
   test("Checking addEmail function", async ({ browser }) => {
     const context = await browser.newContext();
     const email = generateRandomEmail();
     const responseBody = await addEmail(context.request, userID, email);
-    expect(responseBody).toHaveProperty("data", true);
+    expect(responseBody, "ERROR: Email not added").toHaveProperty("data", true);
+    console.log(`${userID}: email added.`);
   });
 });

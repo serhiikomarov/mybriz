@@ -16,6 +16,6 @@ test.describe("Checking update user password function", () => {
     const context = await browser.newContext();
     const responseBody = await updatePassword(context.request, userID, globalData.alternativePassword);
     expect(responseBody.data).toBe(true);
-    console.log(`${userID}: password has been updated`);
+    console.log(`${userID}: password has been updated.`);
   });
 });
