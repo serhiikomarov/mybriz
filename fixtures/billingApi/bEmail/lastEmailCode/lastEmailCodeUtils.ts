@@ -4,8 +4,7 @@ import { getAuthToken } from "../../auth/authenticate/authUtils";
 export async function emailConfirmationCode(request: any, email: string) {
   const apiUrl = `https://dev-bil-api.briz.ua/email/lastcode`;
   const token = await getAuthToken(request);
-  console.log(token);
-  const response = await request.post(apiUrl, {
+  const response = await request.get(apiUrl, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -16,7 +15,7 @@ export async function emailConfirmationCode(request: any, email: string) {
   });
 
   const responseBody = await response.json();
-  expect(responseBody.data, "ERROR: Email confirmation code not received").toBeUndefined();
+  expect(typeof responseBody.data, "ERROR: Email confirmation code not received").toBe("string");
   const emailConfirmationCode = responseBody.data;
   return emailConfirmationCode;
 }
