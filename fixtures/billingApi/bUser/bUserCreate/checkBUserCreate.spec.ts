@@ -3,6 +3,6 @@ import { createBUser } from "./bUserCreateUtils";
 
 test("Checking user creation function in billing", async ({ request }) => {
   const responseBody = await createBUser(request);
-  expect(responseBody, "ERROR: User not created").toHaveProperty("data", expect.any(Number));
-  console.log(`User ${responseBody.data} has been created.`);
+  expect(typeof responseBody, "ERROR: User not created").toBe("number");
+  console.log(`User ${responseBody} has been created.`);
 });

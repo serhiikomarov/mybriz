@@ -16,6 +16,7 @@ export async function createBUser(request: any, modifiedData?: any) {
   });
 
   const responseBody = await response.json();
-  expect(responseBody, "Пользователь не создан").toHaveProperty("data", expect.any(Number));
-  return responseBody;
+  expect(responseBody, "ERROR: User not created").toHaveProperty("data", expect.any(Number));
+  const userID = responseBody.data;
+  return userID;
 }
