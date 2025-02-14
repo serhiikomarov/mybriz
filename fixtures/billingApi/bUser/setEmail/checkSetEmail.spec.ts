@@ -1,9 +1,10 @@
 import { test, expect } from "@playwright/test";
 import { createBUser } from "../bUserCreate/bUserCreateUtils";
-import { updatePassword } from "./updatePasswordUtils";
 import { globalData } from "../../../global.data";
+import { addEmail } from "./setEmailUtils";
+import { generateRandomEmail } from "../../../helpers";
 
-test.describe("Checking update user password function", () => {
+test.describe("Checking addEmail function", () => {
   let userID: string;
 
   test.beforeAll(async ({ browser }) => {
@@ -12,10 +13,10 @@ test.describe("Checking update user password function", () => {
     userID = String(createdUser);
   });
 
-  test("Checking update user password function", async ({ browser }) => {
+  test("Checking addEmail function", async ({ browser }) => {
     const context = await browser.newContext();
-    const responseBody = await updatePassword(context.request, userID, globalData.alternativePassword);
-    expect(responseBody.data).toBe(true);
-    console.log(`${userID}: password has been updated`);
+    const email = generateRandomEmail();
+    const responseBody = await addEmail(context.request, userID, email);
+    console.log(responseBody);
   });
 });
