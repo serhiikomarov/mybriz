@@ -16,6 +16,6 @@ export async function createBUser(request: any, modifiedData?: any) {
   });
 
   const responseBody = await response.json();
-  expect(responseBody, "Пользователь не создан").toBeDefined();
-  return responseBody.data;
+  expect(responseBody, "Пользователь не создан").toHaveProperty("data", expect.any(Number));
+  return responseBody;
 }
