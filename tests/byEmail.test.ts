@@ -37,13 +37,22 @@ test.describe("Authorization by email and password", () => {
     await loginPage.navigateToLoginPage();
   });
 
-  test("Authorization by email and password correct data", async ({ page }) => {
+  test("Authorization by email and password use correct data", async ({ page }) => {
     await loginPage.login(email, globalData.defaultPassword);
     await page.waitForURL(mainPage.pageUrl);
   });
-});
 
-// Заполнить только поле Email, а поле Password оставить пустым.
+  test("Authorization by email and empty password UA", async () => {
+    await loginPage.login(email, globalData.emptyString);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.fieldRequired);
+  });
+
+  test("Authorization by email and empty password EN", async ({ page }) => {
+    await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+    await loginPage.login(email, globalData.emptyString);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.fieldRequired);
+  });
+});
 
 // Тестирование некорректных данных / например, test@com или test.com).
 
