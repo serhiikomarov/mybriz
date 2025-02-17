@@ -55,13 +55,13 @@ test.describe("Authorization by email and password", () => {
 
   test("Authorization by email without at sign UA", async () => {
     await loginPage.login(globalData.emailWithoutAt, globalData.defaultPassword);
-    await expect(loginPage.usernameInput).toContainText(errorMessages.ua.invalidValue);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidValue);
   });
 
   test("Authorization by email with incorrect domen EN", async ({ page }) => {
     await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
     await loginPage.login(globalData.emailIncorrectDomen, globalData.defaultPassword);
-    await expect(loginPage.usernameInput).toContainText(errorMessages.en.invalidValue);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
   });
 });
 
