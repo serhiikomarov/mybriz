@@ -95,23 +95,23 @@ test.describe("Authorization by contract number and password", () => {
 
   test("Authorization by contract number with a space at the beginning UA", async () => {
     await loginPage.login(` ${userID1}`, globalData.defaultPassword);
-    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidLogin);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidValue);
   });
 
   test("Authorization by contract number with a space at the beginning EN", async ({ page }) => {
     await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
     await loginPage.login(` ${userID1}`, globalData.defaultPassword);
-    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidLogin);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
   });
 
   test("Authorization by contract number with a space at the end UA", async () => {
     await loginPage.login(`${userID1} `, globalData.defaultPassword);
-    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidLogin);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidValue);
   });
 
   test("Authorization by contract number with a space at the endEN", async ({ page }) => {
     await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
     await loginPage.login(`${userID1} `, globalData.defaultPassword);
-    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidLogin);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
   });
 });

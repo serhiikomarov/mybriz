@@ -52,9 +52,18 @@ test.describe("Authorization by email and password", () => {
     await loginPage.login(email, globalData.emptyString);
     await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.fieldRequired);
   });
-});
 
-// Тестирование некорректных данных / например, test@com или test.com).
+  test("Authorization by email without at sign UA", async () => {
+    await loginPage.login(globalData.emailWithoutAt, globalData.defaultPassword);
+    await expect(loginPage.usernameInput).toContainText(errorMessages.ua.invalidValue);
+  });
+
+  test("Authorization by email with incorrect domen EN", async ({ page }) => {
+    await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+    await loginPage.login(globalData.emailIncorrectDomen, globalData.defaultPassword);
+    await expect(loginPage.usernameInput).toContainText(errorMessages.en.invalidValue);
+  });
+});
 
 // Ввести неверный Email, которые не существуют в базе).
 
