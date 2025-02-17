@@ -63,12 +63,9 @@ test.describe("Authorization by email and password", () => {
     await loginPage.login(globalData.emailIncorrectDomen, globalData.defaultPassword);
     await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
   });
+
+  test("Authorization by email with email not in database UA", async () => {
+    await loginPage.login(globalData.emailNotInDatabase, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
+  });
 });
-
-// Ввести неверный Email, которые не существуют в базе).
-
-// Тестирование формата и символов / Ввести в поле Email специальные символы или пробелы
-
-// Ввести в поле Password специальные символы, чтобы проверить обработку (например, @#12abcd).
-
-//SQL-инъекцию или XSS-атаки в поля Email и Password (например, <script>alert('XSS')</script>).
