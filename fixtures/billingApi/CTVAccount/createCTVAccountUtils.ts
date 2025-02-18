@@ -1,0 +1,20 @@
+import { expect } from "@playwright/test";
+import { getAuthToken } from "../auth/authenticate/authUtils";
+import { defaultCTVAccountObj } from "./createCTVAccount.data";
+
+export async function createCTVAccount(request: any, userID: string, data?: any) {
+  const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/ctvs`;
+  const token = await getAuthToken(request);
+  console.log(token);
+  const response = await request.post(apiUrl, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    data: data || defaultCTVAccountObj,
+  });
+
+  const responseBody = await response.json();
+  expect(responseBody, "ERROR: CTV account not added").toBeDefined();
+  return responseBody;
+}
