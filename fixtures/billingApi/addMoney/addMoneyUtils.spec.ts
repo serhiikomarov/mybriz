@@ -1,7 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { createBUser } from "../bUserCreate/bUserCreateUtils";
+import { createBUser } from "../bUser/bUserCreate/bUserCreateUtils";
 import { addMoney } from "./addMoneyUtils";
-import { globalData } from "../../../global.data";
 
 test.describe("Checking update user password function", () => {
   let userID: string;
