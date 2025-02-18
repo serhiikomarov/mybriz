@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 import { getAuthToken } from "../../auth/authenticate/authUtils";
 
-export async function updatePassword(request: any, userID: string, newPassword: string) {
+export async function updatePassword(request: any, userID: number, newPassword: string) {
   const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/password/update`;
   const token = await getAuthToken(request);
   console.log(token);

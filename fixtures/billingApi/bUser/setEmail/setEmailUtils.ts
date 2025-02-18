@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 import { getAuthToken } from "../../auth/authenticate/authUtils";
 
-export async function addEmail(request: any, userID: string, email: string) {
+export async function addEmail(request: any, userID: number, email: string) {
   const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/email/add`;
   const token = await getAuthToken(request);
   console.log(token);

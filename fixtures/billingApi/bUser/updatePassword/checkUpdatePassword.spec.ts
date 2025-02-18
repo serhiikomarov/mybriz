@@ -4,12 +4,12 @@ import { updatePassword } from "./updatePasswordUtils";
 import { globalData } from "../../../global.data";
 
 test.describe("Checking update user password function", () => {
-  let userID: string;
+  let userID: number;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const createdUser = await createBUser(context.request);
-    userID = String(createdUser);
+    userID = createdUser;
   });
 
   test("Checking update user password function", async ({ browser }) => {

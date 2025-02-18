@@ -13,14 +13,14 @@ import { generateRandomEmail } from "../fixtures/helpers";
 test.describe("Authorization by email and password", () => {
   let loginPage: LoginPage;
   let mainPage: MainPage;
-  let userID: string;
+  let userID: number;
   let email: string;
   let code: string;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     // create user and get contract ID
-    userID = String(await createBUser(context.request));
+    userID = await createBUser(context.request);
     // generate email
     email = generateRandomEmail();
     // add email to user

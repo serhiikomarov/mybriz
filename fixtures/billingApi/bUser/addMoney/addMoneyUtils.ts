@@ -1,7 +1,7 @@
 import { expect } from "@playwright/test";
 import { getAuthToken } from "../../auth/authenticate/authUtils";
 
-export async function addMoney(request: any, userID: string, data: any) {
+export async function addMoney(request: any, userID: number, data: any) {
   const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/money/direct`;
   const token = await getAuthToken(request);
   const response = await request.post(apiUrl, {

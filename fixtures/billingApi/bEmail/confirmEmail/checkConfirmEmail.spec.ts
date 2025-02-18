@@ -6,14 +6,13 @@ import { emailConfirmationCode } from "../lastEmailCode/lastEmailCodeUtils";
 import { confirmEmail } from "./confirmEmailUtils";
 
 test.describe("Checking email confirmation code", () => {
-  let userID: string;
+  let userID: number;
   let email: string;
-  let code: string;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const createdUser = await createBUser(context.request);
-    userID = String(createdUser);
+    userID = createdUser;
     email = generateRandomEmail();
     await addEmail(context.request, userID, email);
   });

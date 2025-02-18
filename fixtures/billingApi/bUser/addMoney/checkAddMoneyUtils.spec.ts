@@ -3,12 +3,12 @@ import { createBUser } from "../bUserCreate/bUserCreateUtils";
 import { addMoney } from "./addMoneyUtils";
 
 test.describe("Checking add money function", () => {
-  let userID: string;
+  let userID: number;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const createdUser = await createBUser(context.request);
-    userID = String(createdUser);
+    userID = createdUser;
   });
 
   test("Checking add money function", async ({ browser }) => {

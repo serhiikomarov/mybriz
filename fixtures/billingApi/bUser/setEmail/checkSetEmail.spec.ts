@@ -4,12 +4,12 @@ import { addEmail } from "./setEmailUtils";
 import { generateRandomEmail } from "../../../helpers";
 
 test.describe("Checking addEmail function", () => {
-  let userID: string;
+  let userID: number;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const createdUser = await createBUser(context.request);
-    userID = String(createdUser);
+    userID = createdUser;
   });
 
   test("Checking addEmail function", async ({ browser }) => {
