@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createBUser } from "../bUser/bUserCreate/bUserCreateUtils";
+import { createBUser } from "../bUserCreate/bUserCreateUtils";
 import { addMoney } from "./addMoneyUtils";
 
 test.describe("Checking update user password function", () => {
