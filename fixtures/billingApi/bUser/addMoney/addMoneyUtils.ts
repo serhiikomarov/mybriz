@@ -16,4 +16,8 @@ export async function addMoney(request: any, userID: string, data: any) {
     */
     data: data,
   });
+
+  const responseBody = await response.json();
+  expect(responseBody, "ERROR: balance not credited").toHaveProperty("data", true);
+  return responseBody;
 }

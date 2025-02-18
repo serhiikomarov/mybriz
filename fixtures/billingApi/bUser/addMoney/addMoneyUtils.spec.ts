@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { createBUser } from "../bUserCreate/bUserCreateUtils";
 import { addMoney } from "./addMoneyUtils";
 
-test.describe("Checking update user password function", () => {
+test.describe("Checking add money function", () => {
   let userID: string;
 
   test.beforeAll(async ({ browser }) => {
@@ -11,9 +11,10 @@ test.describe("Checking update user password function", () => {
     userID = String(createdUser);
   });
 
-  test("Checking update user password function", async ({ browser }) => {
+  test("Checking add money function", async ({ browser }) => {
     const context = await browser.newContext();
-    const response = await addMoney(context.request, userID, { amount: 100 });
-    console.log(userID);
+    const responseBody = await addMoney(context.request, userID, { amount: 100 });
+    expect(responseBody).toHaveProperty("data", true);
+    console.log(`${userID}: money credited to the balance`);
   });
 });
