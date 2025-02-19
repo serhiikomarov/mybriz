@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
-import LoginPage from "../pages/authPage";
-import MainPage from "../pages/mainPage";
-import { globalData } from "../fixtures/global.data";
-import { testData } from "../testData/test.data";
-import { errorMessages } from "../testData/errors.data";
-import { createBUser } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
-import { addEmail } from "../fixtures/billingApi/bUser/setEmail/setEmailUtils";
-import { emailConfirmationCode } from "../fixtures/billingApi/bEmail/lastEmailCode/lastEmailCodeUtils";
-import { confirmEmail } from "../fixtures/billingApi/bEmail/confirmEmail/confirmEmailUtils";
-import { generateRandomEmail } from "../fixtures/helpers";
+import LoginPage from "../../pages/authPage";
+import MainPage from "../../pages/mainPage";
+import { globalData } from "../../fixtures/global.data";
+import { testData } from "../../testData/test.data";
+import { errorMessages } from "../../testData/errors.data";
+import { createBUser } from "../../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
+import { addEmail } from "../../fixtures/billingApi/bUser/setEmail/setEmailUtils";
+import { emailConfirmationCode } from "../../fixtures/billingApi/bEmail/lastEmailCode/lastEmailCodeUtils";
+import { confirmEmail } from "../../fixtures/billingApi/bEmail/confirmEmail/confirmEmailUtils";
+import { generateRandomEmail } from "../../fixtures/helpers";
 
 test.describe("Authorization by email and password", () => {
   let loginPage: LoginPage;

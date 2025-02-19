@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
-import LoginPage from "../pages/authPage";
-import MainPage from "../pages/mainPage";
-import { globalData } from "../fixtures/global.data";
-import { testData } from "../testData/test.data";
-import { errorMessages } from "../testData/errors.data";
-import { createBUser } from "../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
-import { updatePassword } from "../fixtures/billingApi/bUser/updatePassword/updatePasswordUtils";
+import LoginPage from "../../pages/authPage";
+import MainPage from "../../pages/mainPage";
+import { globalData } from "../../fixtures/global.data";
+import { testData } from "../../testData/test.data";
+import { errorMessages } from "../../testData/errors.data";
+import { createBUser } from "../../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
+import { updatePassword } from "../../fixtures/billingApi/bUser/updatePassword/updatePasswordUtils";
 
 test.describe("Authorization by contract number and password", () => {
   let loginPage: LoginPage;
