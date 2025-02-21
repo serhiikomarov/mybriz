@@ -6,6 +6,7 @@ class PaymentPage {
   //  Names of the locators for the main elements on the page
   public readonly pageTitle: Locator;
   public readonly serviceTitle: Locator;
+  public readonly serviceAmount: Locator;
   public readonly internetLogin: Locator;
   public readonly moviesCheckbox: Locator;
   public readonly staticIpCheckbox: Locator;
@@ -46,9 +47,10 @@ class PaymentPage {
     this.page = page;
 
     // Locators of the main elements on the page
-    this.pageTitle = page.locator('');
-    this.serviceTitle = page.locator('');
-    this.internetLogin = page.locator('');
+    this.pageTitle = page.locator('.payment__title');
+    this.serviceTitle = page.locator('.payment__content__options__service-changer__service-name__name__value');
+    this.serviceAmount = page.locator('.payment__content__options__service-changer__service-name__name > p:nth-child(2)');
+    this.internetLogin = page.locator('article.payment__content__label:nth-child(3)');
     this.moviesCheckbox = page.locator('');
     this.staticIpCheckbox = page.locator('');
     this.currentPeriod = page.locator('');
@@ -56,11 +58,11 @@ class PaymentPage {
     this.monthSlider = page.locator('');
 
     // Locators of the "Checkout Summary" component
-    this.checkoutMainField = page.locator('');
-    this.checkoutMainValue = page.locator('');
+    this.checkoutMainField = page.locator('div:nth-of-type(2) > div > div:first-of-type > div > article');
+    this.checkoutMainValue = page.locator('div:nth-of-type(2) > div > div:first-of-type > div > div > span');
     this.paymentPeriod = page.locator('');
     this.useBonusesCheckbox = page.locator('');
-    this.activateButton = page.locator('');
+    this.activateButton = page.locator('.button__basic__primary');
     this.mainServiceField = page.locator('');
     this.mainServiceValue = page.locator('');
     this.filmsField = page.locator('');

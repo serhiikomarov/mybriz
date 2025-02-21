@@ -9,3 +9,9 @@ export function generateRandomEmail(): string {
 
   return email + "@breezein.test";
 }
+
+function getFirstDayOfPreviousMonth() {
+  const today = new Date();
+  const firstDayPrevMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1); 
+  return firstDayPrevMonth.toISOString().split('T')[0];
+}
