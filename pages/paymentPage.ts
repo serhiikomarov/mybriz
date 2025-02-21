@@ -1,8 +1,9 @@
 import { Page, Locator } from "@playwright/test";
 
 class PaymentPage {
-  //  Names of the locators for the main elements on the page
   private readonly page: Page;
+
+  //  Names of the locators for the main elements on the page
   public readonly pageTitle: Locator;
   public readonly serviceTitle: Locator;
   public readonly internetLogin: Locator;
@@ -13,71 +14,75 @@ class PaymentPage {
   public readonly monthSlider: Locator;
 
   // Names of the "Checkout Summary" component
-  public readonly checkoutField: Locator;
-  public readonly checkoutValue: Locator;
+  public readonly checkoutMainField: Locator;
+  public readonly checkoutMainValue: Locator;
   public readonly paymentPeriod: Locator;
   public readonly useBonusesCheckbox: Locator;
   public readonly activateButton: Locator;
   public readonly mainServiceField: Locator;
   public readonly mainServiceValue: Locator;
-  public readonly moviesField: Locator;
-  public readonly moviesValue: Locator;
-  public readonly staticIPField: Locator;
-  public readonly staticIPValue: Locator;
-  public readonly earnBonusField: Locator;
-  public readonly earnBonusValue: Locator;
-  public readonly backAmountField: Locator;
-  public readonly backAmountValue: Locator;
-  public readonly haveBalanceAmountField: Locator;
-  public readonly haveBalanceAmountValue: Locator;
-  public readonly backBonusAmountField: Locator;
-  public readonly backBonusAmountValue: Locator;
-  public readonly haveBonusAmountField: Locator;
-  public readonly haveBonusAmountValue: Locator;
-  public readonly canBalanceAmountField: Locator;
-  public readonly canBalanceAmountValue: Locator;
+  public readonly filmsField: Locator;
+  public readonly filmsValue: Locator;
+  public readonly dedicatedIPField: Locator;
+  public readonly dedicatedIPValue: Locator;
+  public readonly accruedBonusesField: Locator;
+  public readonly accruedBonusesValue: Locator;
+  public readonly refundField: Locator;
+  public readonly refundValue: Locator;
+  public readonly totalBalanceAmountField: Locator;
+  public readonly totalBalanceAmountValue: Locator;
+  public readonly bonusRefundField: Locator;
+  public readonly bonusRefundValue: Locator;
+  public readonly totalBonusesField: Locator;
+  public readonly totalBonusesValue: Locator;
+  public readonly cashWithdrawalField: Locator;
+  public readonly cashWithdrawalValue: Locator;
   public readonly payAmountField: Locator;
   public readonly payAmountValue: Locator;
+  public readonly checkoutField: Locator;
+  public readonly checkoutValue: Locator;
 
   constructor(page: Page) {
     this.page = page;
 
     // Locators of the main elements on the page
-    this.pageTitle = page.locator('selector-for-page-title');
-    this.serviceTitle = page.locator('selector-for-service-title');
-    this.internetLogin = page.locator('selector-for-internet-login');
-    this.moviesCheckbox = page.locator('selector-for-movies-checkbox');
-    this.staticIpCheckbox = page.locator('selector-for-static-ip-checkbox');
-    this.currentPeriod = page.locator('selector-for-current-period');
-    this.nextPeriod = page.locator('selector-for-next-period');
-    this.monthSlider = page.locator('selector-for-month-slider');
+    this.pageTitle = page.locator('');
+    this.serviceTitle = page.locator('');
+    this.internetLogin = page.locator('');
+    this.moviesCheckbox = page.locator('');
+    this.staticIpCheckbox = page.locator('');
+    this.currentPeriod = page.locator('');
+    this.nextPeriod = page.locator('');
+    this.monthSlider = page.locator('');
 
     // Locators of the "Checkout Summary" component
-    this.checkoutField = page.locator('selector-for-total-amount-field');
-    this.checkoutValue = page.locator('selector-for-total-amount-value');
-    this.paymentPeriod = page.locator('selector-for-payment-period');
-    this.useBonusesCheckbox = page.locator('selector-for-use-bonuses-checkbox');
-    this.activateButton = page.locator('selector-for-activate-button');
-    this.mainServiceField = page.locator('selector-for-main-service-field');
-    this.mainServiceValue = page.locator('selector-for-main-service-value');
-    this.moviesField = page.locator('selector-for-movies-field');
-    this.moviesValue = page.locator('selector-for-movies-value');
-    this.staticIPField = page.locator('selector-for-static-ip-field');
-    this.staticIPValue = page.locator('selector-for-static-ip-value');
-    this.earnBonusField = page.locator('selector-for-earn-bonus-field');
-    this.earnBonusValue = page.locator('selector-for-earn-bonus-value');
-    this.backAmountField = page.locator('selector-for-back-amount-field');
-    this.backAmountValue = page.locator('selector-for-back-amount-value');
-    this.haveBalanceAmountField = page.locator('selector-for-have-balance-amount-field');
-    this.haveBalanceAmountValue = page.locator('selector-for-have-balance-amount-value');
-    this.backBonusAmountField = page.locator('selector-for-back-bonus-amount-field');
-    this.backBonusAmountValue = page.locator('selector-for-back-bonus-amount-value');
-    this.haveBonusAmountField = page.locator('selector-for-have-bonus-amount-field');
-    this.haveBonusAmountValue = page.locator('selector-for-have-bonus-amount-value');
-    this.canBalanceAmountField = page.locator('selector-for-can-balance-amount-field');
-    this.canBalanceAmountValue = page.locator('selector-for-can-balance-amount-value');
-    this.payAmountField = page.locator('selector-for-pay-amount-field');
-    this.payAmountValue = page.locator('selector-for-pay-amount-value');
+    this.checkoutMainField = page.locator('');
+    this.checkoutMainValue = page.locator('');
+    this.paymentPeriod = page.locator('');
+    this.useBonusesCheckbox = page.locator('');
+    this.activateButton = page.locator('');
+    this.mainServiceField = page.locator('');
+    this.mainServiceValue = page.locator('');
+    this.filmsField = page.locator('');
+    this.filmsValue = page.locator('');
+    this.dedicatedIPField = page.locator('');
+    this.dedicatedIPValue = page.locator('');
+    this.accruedBonusesField = page.locator('');
+    this.accruedBonusesValue = page.locator('');
+    this.refundField = page.locator('');
+    this.refundValue = page.locator('');
+    this.totalBalanceAmountField = page.locator('');
+    this.totalBalanceAmountValue = page.locator('');
+    this.bonusRefundField = page.locator('');
+    this.bonusRefundValue = page.locator('');
+    this.totalBonusesField = page.locator('');
+    this.totalBonusesValue = page.locator('');
+    this.cashWithdrawalField = page.locator('');
+    this.cashWithdrawalValue = page.locator('');
+    this.payAmountField = page.locator('');
+    this.payAmountValue = page.locator('');
+    this.checkoutField = page.locator('');
+    this.checkoutValue = page.locator('');
   }
 
   async navigateToPaymentPage(url: string): Promise<void> {
