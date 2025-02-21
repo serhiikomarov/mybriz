@@ -16,11 +16,14 @@ test.describe("Authorization by contract number and password", () => {
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
+    
     // Create user with defaultPassword (6-digit password)
     userID1 = await createBUser(context.request);
+    
     // Create user with alterativePassword (digits and lowercase letters)
     userID2 = await createBUser(context.request);
     await updatePassword(context.request, userID2, globalData.alternativePassword);
+    
     // Create user with maxLengthPassword (16-character password)
     userID3 = await createBUser(context.request);
     await updatePassword(context.request, userID3, globalData.maxLengthPassword);

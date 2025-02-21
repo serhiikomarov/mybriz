@@ -1,13 +1,13 @@
 import { Page, Locator } from "@playwright/test";
 
 class LoginPage {
-  public page: Page;
-  public pageUrl: string;
-  public usernameInput: Locator;
-  public usernameInputHelper: Locator;
-  public passwordInput: Locator;
-  public passwordInputHelper: Locator;
-  public loginButton: Locator;
+  private readonly page: Page;
+  public readonly pageUrl: string;
+  public readonly usernameInput: Locator;
+  public readonly usernameInputHelper: Locator;
+  public readonly passwordInput: Locator;
+  public readonly passwordInputHelper: Locator;
+  public readonly loginButton: Locator;
 
   constructor(page: Page) {
     this.page = page;

@@ -9,6 +9,7 @@ export async function addMoney(request: any, userID: number, data: any) {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
+    
     /* 
     Data examples: 
     {"amount": 100} - 100 UAH will be credited to the balance.

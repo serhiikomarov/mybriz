@@ -19,15 +19,20 @@ test.describe("Authorization by email and password", () => {
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
-    // create user and get contract ID
+    
+    // Create user and get contract ID
     userID = await createBUser(context.request);
-    // generate email
+    
+    // Generate email
     email = generateRandomEmail();
-    // add email to user
+    
+    // Add email to user
     await addEmail(context.request, userID, email);
-    // get confirmation code
+    
+    // Get confirmation code
     code = await emailConfirmationCode(context.request, email);
-    // confirm email
+    
+    // Confirm email
     await confirmEmail(context.request, code);
   });
 
