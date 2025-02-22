@@ -46,7 +46,7 @@ class PaymentPage {
 
   constructor(page: Page, accountID?: number, type?: string) {
     this.page = page;
-    this.pageUrl = `service-payment?accountId=${accountID}&accountType=${type}`;
+    this.pageUrl = `https://devcabinet.briz.ua/service-payment?accountId=${accountID}&accountType=${type}`;
 
     // Locators of the main elements on the page
     this.pageTitle = page.locator(".payment__title");
@@ -91,8 +91,8 @@ class PaymentPage {
     this.checkoutValue = page.locator("");
   }
 
-  async navigateToPaymentPage(url: string): Promise<void> {
-    await this.page.goto(url);
+  async navigateToPaymentPage(): Promise<void> {
+    await this.page.goto(this.pageUrl);
   }
 }
 

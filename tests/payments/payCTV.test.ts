@@ -34,6 +34,9 @@ test.describe("Pay CTV account", () => {
   test("Cable TV payment", async ({ page }) => {
     const paymentPage = new PaymentPage(page, ctvAccountID, "ctv");
     const paymentPageURL = paymentPage.pageUrl;
-    console.log(paymentPageURL);
+    await page.waitForURL(mainPage.pageUrl);
+    await mainPage.goToPaymentButton.click();
+    await page.waitForURL(paymentPage.pageUrl);
+    await page.waitForTimeout(3000);
   });
 });
