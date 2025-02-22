@@ -18,3 +18,9 @@ export async function createCTVAccount(request: any, userID: number, data?: any)
   expect(responseBody, "ERROR: CTV account not added").toBeDefined();
   return responseBody;
 }
+
+export async function getCTVAccountID(request: any, userID: number) {
+  const responseBody = await createCTVAccount(request, userID);
+  const accountID = responseBody.data.id;
+  return accountID;
+}

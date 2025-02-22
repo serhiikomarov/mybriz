@@ -5,30 +5,35 @@ import PaymentPage from "../../pages/paymentPage";
 import { globalData } from "../../fixtures/global.data";
 import { createBUser } from "../../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
 import { addMoney } from "../../fixtures/billingApi/bUser/addMoney/addMoneyUtils";
-import { createCTVAccount } from "../../fixtures/billingApi/CTVAccount/createCTVAccountUtils";
+import { getCTVAccountID } from "../../fixtures/billingApi/CTVAccount/createCTVAccountUtils";
 
 test.describe("Pay CTV account", () => {
   let loginPage: LoginPage;
   let mainPage: MainPage;
   let paymentPage: PaymentPage;
+  let paymentPageURL: string;
   let userID: number;
+  let ctvAccountID: number;
 
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     userID = await createBUser(context.request);
-    await await addMoney(context.request, userID, { amount: 10000});
-    await await addMoney(context.request, userID, { bonus: 10000});
-    await createCTVAccount(context.request, userID)
+    await await addMoney(context.request, userID, { amount: 10000 });
+    await await addMoney(context.request, userID, { bonus: 10000 });
+    ctvAccountID = await getCTVAccountID(context.request, userID);
   });
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     mainPage = new MainPage(page);
+    paymentPage = new PaymentPage(page);
     await loginPage.navigateToLoginPage();
     await loginPage.login(String(userID), globalData.defaultPassword);
   });
 
   test("Cable TV payment", async ({ page }) => {
-    console.log(userID);
+    const paymentPage = new PaymentPage(page, ctvAccountID, "ctv");
+    const paymentPageURL = paymentPage.pageUrl;
+    console.log(paymentPageURL);
   });
 });

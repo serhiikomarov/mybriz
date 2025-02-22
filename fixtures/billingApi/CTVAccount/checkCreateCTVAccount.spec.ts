@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { createBUser } from "../bUser/bUserCreate/bUserCreateUtils";
-import { createCTVAccount } from "./createCTVAccountUtils";
+import { createCTVAccount, getCTVAccountID } from "./createCTVAccountUtils";
 
 test.describe("Checking create CTV account function", () => {
   let userID: number;
@@ -12,12 +12,13 @@ test.describe("Checking create CTV account function", () => {
 
   test("Checking create CTV account function", async ({ browser }) => {
     const context = await browser.newContext();
-    const responseBody = await createCTVAccount(context.request, userID);
-    try {
-      expect(responseBody.data.UserID).toEqual(userID);
-      console.log(`${userID}: CTV account added`);
-    } catch (error) {
-      console.error(`${userID}: CTV account not added`);
-    }
+    const accountID = await createCTVAccount(context.request, userID);
+    console.log(accountID);
+  });
+
+  test("Checking get CTV account function", async ({ browser }) => {
+    const context = await browser.newContext();
+    const accountID = await getCTVAccountID(context.request, userID);
+    console.log(accountID);
   });
 });
