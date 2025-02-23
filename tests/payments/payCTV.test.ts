@@ -6,6 +6,7 @@ import { globalData } from "../../fixtures/global.data";
 import { createBUser } from "../../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
 import { addMoney } from "../../fixtures/billingApi/bUser/addMoney/addMoneyUtils";
 import { getCTVAccountID } from "../../fixtures/billingApi/CTVAccount/createCTVAccountUtils";
+import { daysInMonth } from "../../fixtures/helpers";
 
 test.describe("Pay CTV account", () => {
   let loginPage: LoginPage;
@@ -34,9 +35,11 @@ test.describe("Pay CTV account", () => {
   test("Cable TV payment", async ({ page }) => {
     const paymentPage = new PaymentPage(page, ctvAccountID, "ctv");
     const paymentPageURL = paymentPage.pageUrl;
+    const daysInmonth = daysInMonth();
     await page.waitForURL(mainPage.pageUrl);
     await mainPage.goToPaymentButton.click();
-    await page.waitForURL(paymentPage.pageUrl);
+    await page.waitForURL(paymentPageURL);
     await page.waitForTimeout(3000);
+    console.log(daysInmonth);
   });
 });
