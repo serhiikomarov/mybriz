@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import LoginPage from "../../pages/authPage";
 import MainPage from "../../pages/mainPage";
 import PaymentPage from "../../pages/paymentPage";
+import ThankYouPage from "../../pages/thankYouPage";
 import { globalData } from "../../fixtures/global.data";
 import { createBUser } from "../../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
 import { addMoney } from "../../fixtures/billingApi/bUser/addMoney/addMoneyUtils";
@@ -12,6 +13,7 @@ test.describe("Pay CTV account", () => {
   let loginPage: LoginPage;
   let mainPage: MainPage;
   let paymentPage: PaymentPage;
+  let thankYouPage: ThankYouPage;
   let paymentPageURL: string;
   let userID: number;
   let ctvAccountID: number;
@@ -28,6 +30,7 @@ test.describe("Pay CTV account", () => {
     loginPage = new LoginPage(page);
     mainPage = new MainPage(page);
     paymentPage = new PaymentPage(page);
+    thankYouPage = new ThankYouPage(page);
     await loginPage.navigateToLoginPage();
     await loginPage.login(String(userID), globalData.defaultPassword);
   });
@@ -39,6 +42,10 @@ test.describe("Pay CTV account", () => {
     await page.waitForURL(mainPage.pageUrl);
     await mainPage.goToPaymentButton.click();
     await page.waitForURL(paymentPageURL);
+    await paymentPage.activateButton.click();
+    await page.waitForTimeout(3000);
+    await page.waitForURL(thankYouPage.successActivatedURL);
+    await thankYouPage.toMainButton.click();
     await page.waitForTimeout(3000);
     console.log(daysInmonth);
   });
