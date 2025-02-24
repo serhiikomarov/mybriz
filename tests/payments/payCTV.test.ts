@@ -7,7 +7,9 @@ import { globalData } from "../../fixtures/global.data";
 import { createBUser } from "../../fixtures/billingApi/bUser/bUserCreate/bUserCreateUtils";
 import { addMoney } from "../../fixtures/billingApi/bUser/addMoney/addMoneyUtils";
 import { getCTVAccountID } from "../../fixtures/billingApi/CTVAccount/createCTVAccountUtils";
-import { daysInMonth } from "../../fixtures/helpers";
+import { daysInMonth, remainingDaysInMonth } from "../../fixtures/helpers";
+import { serviceNames, servicePrices } from "../../testData/services.data";
+import { texts } from "../../testData/texts.data";
 
 test.describe("Pay CTV account", () => {
   let loginPage: LoginPage;
@@ -22,7 +24,6 @@ test.describe("Pay CTV account", () => {
     const context = await browser.newContext();
     userID = await createBUser(context.request);
     await await addMoney(context.request, userID, { amount: 10000 });
-    await await addMoney(context.request, userID, { bonus: 10000 });
     ctvAccountID = await getCTVAccountID(context.request, userID);
   });
 
@@ -38,15 +39,15 @@ test.describe("Pay CTV account", () => {
   test("Cable TV payment", async ({ page }) => {
     const paymentPage = new PaymentPage(page, ctvAccountID, "ctv");
     const paymentPageURL = paymentPage.pageUrl;
-    const daysInmonth = daysInMonth();
+    const remainingPeriodPrice = ((servicePrices.ctv / daysInMonth()) * remainingDaysInMonth()).toFixed(2);
     await page.waitForURL(mainPage.pageUrl);
     await mainPage.goToPaymentButton.click();
     await page.waitForURL(paymentPageURL);
+    await expect(paymentPage.pageTitle).toContainText(texts.ua.payment);
+    await expect(paymentPage.serviceTitle).toContainText(texts.ua.ctv);
+    await expect(paymentPage.serviceAmount).toContainText(`${servicePrices.ctv} ${texts.ua.uahMonth}`);
     await paymentPage.activateButton.click();
-    await page.waitForTimeout(3000);
     await page.waitForURL(thankYouPage.successActivatedURL);
     await thankYouPage.toMainButton.click();
-    await page.waitForTimeout(3000);
-    console.log(daysInmonth);
   });
 });

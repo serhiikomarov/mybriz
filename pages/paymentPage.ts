@@ -14,6 +14,18 @@ class PaymentPage {
   public readonly currentPeriod: Locator;
   public readonly nextPeriod: Locator;
   public readonly monthSlider: Locator;
+  public readonly sliderPosition1: Locator;
+  public readonly sliderPosition2: Locator;
+  public readonly sliderPosition3: Locator;
+  public readonly sliderPosition4: Locator;
+  public readonly sliderPosition5: Locator;
+  public readonly sliderPosition6: Locator;
+  public readonly sliderPosition7: Locator;
+  public readonly sliderPosition8: Locator;
+  public readonly sliderPosition9: Locator;
+  public readonly sliderPosition10: Locator;
+  public readonly sliderPosition11: Locator;
+  public readonly sliderPosition12: Locator;
 
   // Names of the "Checkout Summary" component
   public readonly checkoutMainField: Locator;
@@ -21,6 +33,7 @@ class PaymentPage {
   public readonly paymentPeriod: Locator;
   public readonly useBonusesCheckbox: Locator;
   public readonly activateButton: Locator;
+  public readonly spoilerButton: Locator;
   public readonly mainServiceField: Locator;
   public readonly mainServiceValue: Locator;
   public readonly filmsField: Locator;
@@ -52,7 +65,7 @@ class PaymentPage {
     this.pageTitle = page.locator(".payment__title");
     this.serviceTitle = page.locator(".payment__content__options__service-changer__service-name__name__value");
     this.serviceAmount = page.locator(
-      ".payment__content__options__service-changer__service-name__name > p:nth-child(2)"
+      "html > body > div:first-of-type > div > div > div > main > div > div > div > div > div:first-of-type > div:first-of-type > div > div > p"
     );
     this.internetLogin = page.locator("article.payment__content__label:nth-child(3)");
     this.moviesCheckbox = page.locator("");
@@ -60,6 +73,18 @@ class PaymentPage {
     this.currentPeriod = page.locator("");
     this.nextPeriod = page.locator("");
     this.monthSlider = page.locator("");
+    this.sliderPosition1 = page.locator("span.MuiSlider-markLabel:nth-child(4)");
+    this.sliderPosition2 = page.locator("span.MuiSlider-markLabel:nth-child(6)");
+    this.sliderPosition3 = page.locator("span.MuiSlider-markLabel:nth-child(8)");
+    this.sliderPosition4 = page.locator("span.MuiSlider-markLabel:nth-child(10)");
+    this.sliderPosition5 = page.locator("span.MuiSlider-markLabel:nth-child(12)");
+    this.sliderPosition6 = page.locator("span.MuiSlider-markLabel:nth-child(14)");
+    this.sliderPosition7 = page.locator("span.MuiSlider-markLabel:nth-child(16)");
+    this.sliderPosition8 = page.locator("span.MuiSlider-markLabel:nth-child(18)");
+    this.sliderPosition9 = page.locator("span.MuiSlider-markLabel:nth-child(20)");
+    this.sliderPosition10 = page.locator("span.MuiSlider-markLabel:nth-child(22)");
+    this.sliderPosition11 = page.locator("span.MuiSlider-markLabel:nth-child(24)");
+    this.sliderPosition12 = page.locator("span.MuiSlider-markLabel:nth-child(26)");
 
     // Locators of the "Checkout Summary" component
     this.checkoutMainField = page.locator("div:nth-of-type(2) > div > div:first-of-type > div > article");
@@ -67,6 +92,7 @@ class PaymentPage {
     this.paymentPeriod = page.locator("");
     this.useBonusesCheckbox = page.locator("");
     this.activateButton = page.locator(".button__basic__primary");
+    this.spoilerButton = page.locator(".btn-props");
     this.mainServiceField = page.locator("");
     this.mainServiceValue = page.locator("");
     this.filmsField = page.locator("");

@@ -17,3 +17,12 @@ export function daysInMonth() {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   return daysInMonth;
 }
+
+export function remainingDaysInMonth(): number {
+  const now = new Date();
+  const currentDay = now.getDate();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  return daysInMonth - currentDay;
+}
