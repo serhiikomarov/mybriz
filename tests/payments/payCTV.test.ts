@@ -40,10 +40,10 @@ test.describe("Pay CTV account", () => {
 
   test("Cable TV payment", async ({ page, browser }) => {
     test.setTimeout(60000);
+    // Payment for 1 month
     const paymentPage = new PaymentPage(page, ctvAccountID, "ctv");
     const paymentPageURL = paymentPage.pageUrl;
     await page.waitForURL(mainPage.pageUrl);
-    // Payment for 1 month
     await mainPage.goToPaymentButton.click();
     await page.waitForURL(paymentPageURL);
     const context = await browser.newContext();
@@ -58,9 +58,9 @@ test.describe("Pay CTV account", () => {
     await expect(paymentPage.checkoutMainField).toContainText(texts.ua.checkout);
     await expect(paymentPage.checkoutMainValue).toContainText(`0.00 грн`);
     await expect(paymentPage.mainServiceField).toContainText(texts.ua.ctv);
-    await expect(paymentPage.mainServiceValue).toContainText(`${toPayAmount.toFixed(2)} грн`);
+    await expect(paymentPage.mainServiceValue).toContainText(`${formatCurrency(toPayAmount)} грн`);
     await expect(paymentPage.cashWithdrawalField).toContainText(texts.ua.cashWithdrawal);
-    await expect(paymentPage.cashWithdrawalValue).toContainText(`-${toPayAmount.toFixed(2)} грн`);
+    await expect(paymentPage.cashWithdrawalValue).toContainText(`-${formatCurrency(toPayAmount)} грн`);
     await expect(paymentPage.checkoutField).toContainText(texts.ua.checkout);
     await expect(paymentPage.checkoutValue).toContainText(`0.00 грн`);
     await paymentPage.activateButton.click();
