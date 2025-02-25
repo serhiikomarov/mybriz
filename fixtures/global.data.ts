@@ -1,4 +1,4 @@
-export const globalData = {
+const globalData = {
   defaultPassword: "123456",
   alternativePassword: "alt9876543210",
   invalid5DigitsPassword: "12345",
@@ -11,3 +11,5 @@ export const globalData = {
   emptyString: "",
   xssInjection: "<script>alert('XSS')</script>",
 };
+
+export { globalData };

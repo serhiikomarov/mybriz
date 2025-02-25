@@ -16,4 +16,4 @@ class MainPage {
   }
 }
 
-export default MainPage;
+export { MainPage };

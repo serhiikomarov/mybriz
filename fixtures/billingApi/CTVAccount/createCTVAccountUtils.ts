@@ -2,7 +2,7 @@ import { expect } from "@playwright/test";
 import { getAuthToken } from "../auth/authenticate/authUtils";
 import { defaultCTVAccountObj } from "./createCTVAccount.data";
 
-export async function createCTVAccount(request: any, userID: number, data?: any) {
+async function createCTVAccount(request: any, userID: number, data?: any) {
   const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/ctvs`;
   const token = await getAuthToken(request);
   console.log(token);
@@ -19,8 +19,10 @@ export async function createCTVAccount(request: any, userID: number, data?: any)
   return responseBody;
 }
 
-export async function getCTVAccountID(request: any, userID: number) {
+async function getCTVAccountID(request: any, userID: number) {
   const responseBody = await createCTVAccount(request, userID);
   const accountID = responseBody.data.id;
   return accountID;
 }
+
+export { createCTVAccount, getCTVAccountID };
