@@ -118,6 +118,15 @@ class PaymentPage {
 	async navigateToPaymentPage(): Promise<void> {
 		await this.page.goto(this.pageUrl);
 	}
+
+	async setSliderPosition(months: number) {
+		const slider = this[`sliderPosition${months}`];
+		if (slider) {
+			return slider.click();
+		} else {
+			throw new Error(`Slider position ${months} not found`);
+		}
+	}
 }
 
 export default PaymentPage;
