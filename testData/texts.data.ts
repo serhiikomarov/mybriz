@@ -1,4 +1,4 @@
-export const texts = {
+const texts = {
 	ua: {
 		payment: 'Оплата',
 		ctv: 'Кабельне ТБ',
@@ -14,3 +14,5 @@ export const texts = {
 		checkout: 'Checkout',
 	},
 };
+
+export { texts };

@@ -1,4 +1,6 @@
-export const testData = {
-  languageEN: "?lang=en",
-  languageUA: "?lang=ua",
+const testData = {
+	languageEN: '?lang=en',
+	languageUA: '?lang=ua',
 };
+
+export { testData };
