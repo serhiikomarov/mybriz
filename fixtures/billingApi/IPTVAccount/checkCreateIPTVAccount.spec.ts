@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { createBUser } from "../bUser/bUserCreate/bUserCreateUtils";
 import { createIPTVAccount, getIPTVAccountID } from "./createIPTVAccountUtils";
 
-// Don't run both test at each time, use only one...
+// Don't run both tests at each time, use only one...
 // ..."Checking create IPTV account function" or "Checking get IPTV account function"
 test.describe("Checking create IPTV account function", () => {
   let userID: number;
