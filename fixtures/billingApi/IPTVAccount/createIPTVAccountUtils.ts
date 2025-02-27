@@ -21,6 +21,7 @@ async function createIPTVAccount(request: any, userID: number, data?: any) {
 
 async function getIPTVAccountID(request: any, userID: number) {
   const responseBody = await createIPTVAccount(request, userID);
+  console.log(responseBody);
   const accountID = responseBody.data.user.id;
   return accountID;
 }
