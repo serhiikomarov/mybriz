@@ -1,7 +1,8 @@
 import { Browser, expect, Page } from '@playwright/test';
-import { daysInMonth, periodToPay, remainingDaysInMonth, formatCurrency, getCalculateCTVfts } from '../../fixtures';
+import { periodToPay, formatCurrency, getCalculateCTVfts } from '../../fixtures';
 import { LoginPage, MainPage, PaymentPage, ThankYouPage } from '../../pages';
 import { servicePrices, texts } from '../../testData';
+import { toPayAmountFunc } from '../../testData';
 
 export async function runCTVPaymentFlow(months: number, page: Page, browser: Browser, loginPage: LoginPage, mainPage: MainPage, paymentPage: PaymentPage, thankYouPage: ThankYouPage, paymentPageURL: string, userID: number, ctvAccountID: number) {
 	// Check params
@@ -14,12 +15,10 @@ export async function runCTVPaymentFlow(months: number, page: Page, browser: Bro
 	await page.waitForURL(paymentPageURL);
 	const context = await browser.newContext();
 	let fts = await getCalculateCTVfts(context.request, userID, ctvAccountID);
+	let servicePrice = servicePrices.ctv;
 	let currentPeriod = periodToPay(fts);
-	function toPayAmountFunc(months: number) {
-		if (months === 1) return (servicePrices.ctv / daysInMonth()) * remainingDaysInMonth();
-		return servicePrices.ctv * months;
-	}
-	let toPayAmount = toPayAmountFunc(months);
+	let toPayAmount = toPayAmountFunc(months, servicePrice);
+	console.log(toPayAmount);
 	await expect(paymentPage.pageTitle).toContainText(texts.ua.payment);
 	await expect(paymentPage.serviceTitle).toContainText(texts.ua.ctv);
 	await expect(paymentPage.serviceAmount).toContainText(`${servicePrices.ctv} ${texts.ua.uahMonth}`);
