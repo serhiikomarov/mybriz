@@ -1,8 +1,9 @@
 import { test } from '@playwright/test';
-import { globalData, createBUser, getIPTVAccountID, addMoney } from '../../fixtures';
+import { globalData, createBUser, getIPTVAccountID, addMoney, getCalculateIPTVfts, periodToPay } from '../../fixtures';
 import { LoginPage, MainPage, PaymentPage, ThankYouPage } from '../../pages';
+import { toPayAmountFunc, servicePrices } from '../../testData';
 
-test.describe('Pay CTV account', () => {
+test.describe('Pay IPTV account', () => {
 	let loginPage: LoginPage;
 	let mainPage: MainPage;
 	let paymentPage: PaymentPage;
@@ -36,12 +37,17 @@ test.describe('Pay CTV account', () => {
 		await mainPage.goToPaymentButton.click();
 		await page.waitForURL(paymentPageURL);
 		const context = await browser.newContext();
-		// let fts = await getCalculateCTVfts(context.request, userID, ctvAccountID);
-		// let currentPeriod = periodToPay(fts);
-		// function toPayAmountFunc(months: number) {
-		//     if (months === 1) return (servicePrices.ctv / daysInMonth()) * remainingDaysInMonth();
-		//     return servicePrices.ctv * months;
-		// }
+		let fts = await getCalculateIPTVfts(context.request, userID, IPTVAccountID);
+		let servicePrice = servicePrices.briztv;
+		let currentPeriod = periodToPay(fts);
+		let toPayAmount = toPayAmountFunc(1, servicePrice);
+		// await expect(paymentPage.pageTitle).toContainText(texts.ua.payment);
+		// await expect(paymentPage.serviceTitle).toContainText(texts.ua.ctv);
+		// await expect(paymentPage.serviceAmount).toContainText(`${servicePrices.ctv} ${texts.ua.uahMonth}`);
+		// await expect(paymentPage.currentPeriod).toContainText(`${currentPeriod}`);
+		await paymentPage.setSliderPosition(1);
+		//await paymentPage.spoilerButton.click();
+
 		// let toPayAmount = toPayAmountFunc(months);
 		// await expect(paymentPage.pageTitle).toContainText(texts.ua.payment);
 		// await expect(paymentPage.serviceTitle).toContainText(texts.ua.ctv);
@@ -57,7 +63,7 @@ test.describe('Pay CTV account', () => {
 		// await expect(paymentPage.cashWithdrawalValue).toContainText(`-${formatCurrency(toPayAmount)} грн`);
 		// await expect(paymentPage.checkoutField).toContainText(texts.ua.checkout);
 		// await expect(paymentPage.checkoutValue).toContainText(`0.00 грн`);
-		// await paymentPage.activateButton.click();
+		await paymentPage.activateButton.click();
 		// await page.waitForURL(thankYouPage.successActivatedURL);
 		// await thankYouPage.toMainButton.click();
 		// await page.waitForURL(mainPage.pageUrl);

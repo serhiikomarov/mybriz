@@ -18,7 +18,6 @@ export async function runCTVPaymentFlow(months: number, page: Page, browser: Bro
 	let servicePrice = servicePrices.ctv;
 	let currentPeriod = periodToPay(fts);
 	let toPayAmount = toPayAmountFunc(months, servicePrice);
-	console.log(toPayAmount);
 	await expect(paymentPage.pageTitle).toContainText(texts.ua.payment);
 	await expect(paymentPage.serviceTitle).toContainText(texts.ua.ctv);
 	await expect(paymentPage.serviceAmount).toContainText(`${servicePrices.ctv} ${texts.ua.uahMonth}`);
