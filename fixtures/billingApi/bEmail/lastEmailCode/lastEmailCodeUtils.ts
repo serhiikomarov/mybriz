@@ -1,5 +1,14 @@
 import { expect } from '@playwright/test';
 import { getAuthToken } from '../../auth/authenticate/authUtils';
+import { error } from 'console';
+
+/**
+ * Get Email confirmation code
+ * @param request The Playwright request context.
+ * @param email User's Email.
+ * @throw Error if confirmation code didn't received.
+ * @returns Email confirmation code.
+ */
 
 async function emailConfirmationCode(request: any, email: string) {
 	const apiUrl = 'https://dev-bil-api.briz.ua/email/lastcode';
@@ -15,7 +24,11 @@ async function emailConfirmationCode(request: any, email: string) {
 	});
 
 	const responseBody = await response.json();
-	expect(typeof responseBody.data, 'ERROR: Email confirmation code not received').toBe('string');
+
+	if (!responseBody.data) {
+		throw new Error('Email confirmation code not received');
+	}
+
 	const emailConfirmationCode = responseBody.data;
 	return emailConfirmationCode;
 }
