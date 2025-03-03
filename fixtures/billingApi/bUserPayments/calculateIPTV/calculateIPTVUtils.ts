@@ -19,7 +19,6 @@ async function calculateIPTVAccount(request: any, userID: number, IPTVAccountID:
 
 async function getCalculateIPTVfts(request: any, userID: number, IPTVAccountID: number) {
 	const responseBody = await calculateIPTVAccount(request, userID, IPTVAccountID);
-	console.log(responseBody);
 	const fts = responseBody.data.view.iptv[IPTVAccountID]?.fts;
 	return fts;
 }
