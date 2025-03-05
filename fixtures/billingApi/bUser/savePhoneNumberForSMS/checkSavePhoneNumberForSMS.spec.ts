@@ -14,7 +14,7 @@ test.describe("Checking addEmail function", () => {
     phoneNumber = generatePhoneNumber();
   });
 
-  test("Checking addEmail function", async ({ browser }) => {
+  test("Checking addPhoneNumber function", async ({ browser }) => {
     const context = await browser.newContext();
     const responseBody = await addPhoneNumber(context.request, userID, phoneNumber);
     console.log(userID, responseBody);
