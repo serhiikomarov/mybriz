@@ -1,2 +1,2 @@
-export * from './authUtils';
-export * from './authUtils.data';
+export * from "./authUtils";
+export * from "./authUtils.data";
