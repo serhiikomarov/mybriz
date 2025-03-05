@@ -3,7 +3,7 @@ import { createBUser } from "../bUserCreate/bUserCreateUtils";
 import { addPhoneNumber } from "./savePhoneNumberForSMSUtils";
 import { generatePhoneNumber } from "../../../helpers";
 
-test.describe("Checking addEmail function", () => {
+test.describe("Checking addPhoneNumber function", () => {
   let userID: number;
   let phoneNumber: string;
 
