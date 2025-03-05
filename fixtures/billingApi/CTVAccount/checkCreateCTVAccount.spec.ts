@@ -19,6 +19,6 @@ test.describe('Checking create CTV account function', () => {
 	test('Checking get CTV account function', async ({ browser }) => {
 		const context = await browser.newContext();
 		const accountID = await getCTVAccountID(context.request, userID);
-		console.log(accountID);
+		console.log(`UserID: ${userID}, CTVAccountID: ${accountID}`);
 	});
 });

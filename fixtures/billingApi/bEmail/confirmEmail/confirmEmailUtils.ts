@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import { getAuthToken } from '../../auth/authenticate/authUtils';
 
 /**
