@@ -10,6 +10,7 @@ const globalData = {
   wrongValidPassword: "asasd45a64564",
   emptyString: "",
   xssInjection: "<script>alert('XSS')</script>",
+  phoneNumberNotInDatabase: "0107654321",
 };
 
 export { globalData };
