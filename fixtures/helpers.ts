@@ -55,4 +55,17 @@ function generatePhoneNumber() {
   return `011${fakePhone}`;
 }
 
-export { generateRandomEmail, daysInMonth, remainingDaysInMonth, periodToPay, formatCurrency, generatePhoneNumber };
+function toPayAmountFunc(months: number, servicePrice: any) {
+  if (months === 1) return (servicePrice / daysInMonth()) * remainingDaysInMonth();
+  return servicePrice * months;
+}
+
+export {
+  generateRandomEmail,
+  daysInMonth,
+  remainingDaysInMonth,
+  periodToPay,
+  formatCurrency,
+  generatePhoneNumber,
+  toPayAmountFunc,
+};

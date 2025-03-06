@@ -2,7 +2,7 @@ import { Browser, expect, Page } from "@playwright/test";
 import { periodToPay, formatCurrency, getCalculateCTVfts } from "../../fixtures";
 import { LoginPage, MainPage, PaymentPage, ThankYouPage } from "../../pages";
 import { servicePrices, texts } from "../../testData";
-import { toPayAmountFunc } from "../../testData";
+import { toPayAmountFunc } from "../../fixtures";
 
 export async function runCTVPaymentFlow(
   months: number,
