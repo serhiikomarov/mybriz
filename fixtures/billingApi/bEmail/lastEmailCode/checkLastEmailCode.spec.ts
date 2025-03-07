@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { generateRandomEmail } from '../../../helpers';
 import { createBUser } from '../../bUser/bUserCreate/bUserCreateUtils';
 import { addEmail } from '../../bUser/setEmail/setEmailUtils';
