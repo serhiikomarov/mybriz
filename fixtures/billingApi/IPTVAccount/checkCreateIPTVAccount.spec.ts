@@ -21,6 +21,6 @@ test.describe('Checking create IPTV account function', () => {
 	test('Checking get IPTV account function', async ({ browser }) => {
 		const context = await browser.newContext();
 		const accountID = await getIPTVAccountID(context.request, userID);
-		console.log(accountID);
+		console.log(`Account number: ${userID}, IPTV AccountID: ${accountID}`);
 	});
 });
