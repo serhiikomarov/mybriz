@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage, MainPage } from '../../pages';
-import { globalData, createBUser, addEmail, emailConfirmationCode, confirmEmail, generateRandomEmail } from '../../fixtures';
-import { testData, errorMessages } from '../../testData';
+import { createBUser, addEmail, emailConfirmationCode, confirmEmail, generateRandomEmail } from '../../fixtures';
+import { testData, errorMessages, globalData } from '../../testData';
 
 test.describe('Authorization by email and password', () => {
 	let loginPage: LoginPage;
