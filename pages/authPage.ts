@@ -7,6 +7,7 @@ class LoginPage {
   public readonly usernameInputHelper: Locator;
   public readonly passwordInput: Locator;
   public readonly passwordInputHelper: Locator;
+  public readonly authWithSMSButton: Locator;
   public readonly loginButton: Locator;
 
   constructor(page: Page) {
@@ -16,6 +17,7 @@ class LoginPage {
     this.usernameInputHelper = page.locator("#mui-1-helper-text");
     this.passwordInput = page.locator('[type="password"]');
     this.passwordInputHelper = page.locator("#mui-2-helper-text");
+    this.authWithSMSButton = page.locator("form div:nth-of-type(3) > button:first-of-type > span");
     this.loginButton = page.locator('[type="submit"]');
   }
 
