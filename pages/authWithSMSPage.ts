@@ -11,13 +11,13 @@ class AuthWithSMSPage {
   constructor(page: Page) {
     this.page = page;
     this.pageUrl = "https://devcabinet.briz.ua/login/request-sms-code";
-    this.phoneNumberInput = page.locator("#mui-9");
+    this.phoneNumberInput = page.locator("#mui-4");
     this.backButton = page.locator(".button__basic__secondary_bold");
     this.sendSMSButton = page.locator("button.MuiButtonBase-root:nth-child(2)");
     this.haveSMSCodeButton = page.locator(".button__text > span:nth-child(1)");
   }
 
-  async login(phoneNumber: string): Promise<void> {
+  async sendSMS(phoneNumber: string): Promise<void> {
     await this.phoneNumberInput.fill(phoneNumber);
     await this.sendSMSButton.click();
   }
