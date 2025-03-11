@@ -33,9 +33,11 @@ test.describe("Authorization by SMS with contract ID", () => {
     await loginPage.authWithSMSButton.click();
   });
 
-  test("Authorization by SMS with correct contract ID", async ({ page }) => {
+  test("Authorization by SMS with correct contract ID", async ({ page, request }) => {
     await authWithSMSPage.sendSMS(phoneNumber);
-    codeFromSMS = checkLastCodeSMS(phoneNumber);
+    console.log(userID);
+    await page.waitForTimeout(5000);
+    const codeFromSMS = await checkLastCodeSMS(request, phoneNumber);
     console.log(codeFromSMS);
   });
 });

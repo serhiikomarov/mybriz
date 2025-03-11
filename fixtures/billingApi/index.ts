@@ -4,3 +4,4 @@ export * from "./bUser";
 export * from "./bUserPayments";
 export * from "./CTVAccount";
 export * from "./IPTVAccount";
+export * from "./SMS";
