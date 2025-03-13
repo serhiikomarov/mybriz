@@ -3,7 +3,7 @@ const currentDate = new Date();
 
 const defaultUserCreateObj = {
   AreaID: 0,
-  Name: "Test account",
+  Name: "Test_Account_PW",
   StreetID: 9,
   Dom: "108",
   Flat: "555",
