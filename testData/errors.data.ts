@@ -1,20 +1,22 @@
 const errorMessages = {
-	ua: {
-		fieldRequired: `Це обов'язкове поле`,
-		loginIsShort: 'Кількість символів - 3',
-		invalidValue: 'Невірне значення',
-		passwordIsShort: 'Кількість символів - 6',
-		passwordIsLong: 'Кількість символів не більше ніж - 16',
-		undefinedUser: 'Користувача з таким логіном і паролем не знайдено.',
-	},
-	en: {
-		fieldRequired: 'This field is required',
-		loginIsShort: 'Number of characters at least - 3',
-		invalidValue: 'Invalid value',
-		passwordIsShort: 'Number of characters at least - 6',
-		passwordIsLong: 'The number of characters must be no more than - 16',
-		undefinedUser: 'User with this login and password not found.',
-	},
+  ua: {
+    fieldRequired: `Це обов'язкове поле`,
+    loginIsShort: "Кількість символів - 3",
+    invalidValue: "Невірне значення",
+    passwordIsShort: "Кількість символів - 6",
+    passwordIsLong: "Кількість символів не більше ніж - 16",
+    undefinedUser: "Користувача з таким логіном і паролем не знайдено.",
+    incorrectAccountNumberCode: "№ договору або Код з SMS некоректний. Перевірте і спробуйте знову.",
+  },
+  en: {
+    fieldRequired: "This field is required",
+    loginIsShort: "Number of characters at least - 3",
+    invalidValue: "Invalid value",
+    passwordIsShort: "Number of characters at least - 6",
+    passwordIsLong: "The number of characters must be no more than - 16",
+    undefinedUser: "User with this login and password not found.",
+    incorrectAccountNumberCode: "Invalid Contract number or SMS-code. Check and try again.",
+  },
 };
 
 export { errorMessages };

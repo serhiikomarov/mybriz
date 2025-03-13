@@ -19,12 +19,12 @@ async function checkLastCodeSMS(request: any, phoneNumber: string) {
   return responseBody.data;
 }
 
-async function waitForSMSCode(request: any, phoneNumber: string, timeout = 10000) {
+async function waitForSMSCode(request: any, phoneNumberContractID: string, timeout = 10000) {
   const start = Date.now();
   let code = null;
 
   while (Date.now() - start < timeout) {
-    code = await checkLastCodeSMS(request, phoneNumber);
+    code = await checkLastCodeSMS(request, phoneNumberContractID);
     if (code) return code;
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second and try again
   }

@@ -34,13 +34,36 @@ test.describe("Authorization by SMS with contract ID", () => {
     await loginPage.authWithSMSButton.click();
   });
 
-  test("Authorization by SMS with correct contract ID", async ({ page, request }) => {
-    await authWithSMSPage.sendSMS(phoneNumber);
+  test("Authorization by SMS with correct contract ID and correct code from SMS", async ({ page, request }) => {
+    await authWithSMSPage.sendSMS(String(userID));
     codeFromSMS = await waitForSMSCode(request, phoneNumber);
     authWithSMSCodePage.enterCodeFromSMS(codeFromSMS);
-    await page.waitForTimeout(1500);
     await authWithSMSCodePage.logInButton.click();
     await page.waitForURL(mainPage.pageUrl);
-    await page.waitForTimeout(4000);
   });
+
+  /* 
+  пустой инпут
+  короткий номер договора
+  несуществующий номер договора
+  номер договора без СМС профиля
+  */
+
+  test("Authorization by SMS with empty input UA", async ({ page }) => {
+    await authWithSMSPage.sendSMS(String(""));
+    await page.waitForTimeout(2000);
+    await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.ua.fieldRequired);
+  });
+
+  test("Authorization by SMS with empty input EN", async ({ page }) => {
+    await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+    await page.waitForTimeout(2000);
+    await authWithSMSPage.sendSMS(String(""));
+    await page.waitForTimeout(2000);
+    await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.fieldRequired);
+  });
+
+  // test("Authorization by phone number starts with 8", async ({ page }) => {});
+
+  // test("Authorization by phone number starts with 38", async ({ page }) => {});
 });
