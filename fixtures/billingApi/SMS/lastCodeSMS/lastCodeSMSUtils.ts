@@ -19,4 +19,17 @@ async function checkLastCodeSMS(request: any, phoneNumber: string) {
   return responseBody.data;
 }
 
-export { checkLastCodeSMS };
+async function waitForSMSCode(request: any, phoneNumber: string, timeout = 10000) {
+  const start = Date.now();
+  let code = null;
+
+  while (Date.now() - start < timeout) {
+    code = await checkLastCodeSMS(request, phoneNumber);
+    if (code) return code;
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second and try again
+  }
+
+  throw new Error("ERROR: SMS code not received within timeout");
+}
+
+export { checkLastCodeSMS, waitForSMSCode };

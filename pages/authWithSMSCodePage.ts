@@ -4,6 +4,9 @@ class AuthWithSMSCodePage {
   private readonly page: Page;
   public readonly pageUrl: string;
   public readonly codeInputFirstDigit: Locator;
+  public readonly codeInputSecondDigit: Locator;
+  public readonly codeInputThirdDigit: Locator;
+  public readonly codeInputFourthDigit: Locator;
   public readonly backButton: Locator;
   public readonly logInButton: Locator;
   public readonly sendCodeAgainButton: Locator;
@@ -11,9 +14,10 @@ class AuthWithSMSCodePage {
   constructor(page: Page) {
     this.page = page;
     this.pageUrl = "https://devcabinet.briz.ua/login/enter-sms-code";
-    this.codeInputFirstDigit = page.locator(
-      ".login-enter-code-sms-container__form__otp > div:nth-child(1) > input:nth-child(1)"
-    );
+    this.codeInputFirstDigit = page.locator("form > div:first-of-type > div:nth-of-type(1) > input");
+    this.codeInputSecondDigit = page.locator("form > div:first-of-type > div:nth-of-type(2) > input");
+    this.codeInputThirdDigit = page.locator("form > div:first-of-type > div:nth-of-type(3) > input");
+    this.codeInputFourthDigit = page.locator("form > div:first-of-type > div:nth-of-type(4) > input");
     this.backButton = page.locator(".button__basic__secondary_bold");
     this.logInButton = page.locator("button.MuiButtonBase-root:nth-child(2)");
     this.sendCodeAgainButton = page.locator("button.button:nth-child(3)");
@@ -26,6 +30,13 @@ class AuthWithSMSCodePage {
 
   async navigateToAuthWithSMSCodePage(): Promise<void> {
     await this.page.goto(this.pageUrl);
+  }
+
+  async enterCodeFromSMS(codeFromeSMS: string) {
+    await this.codeInputFirstDigit.fill(Array.from(codeFromeSMS)[0]);
+    await this.codeInputSecondDigit.fill(Array.from(codeFromeSMS)[1]);
+    await this.codeInputThirdDigit.fill(Array.from(codeFromeSMS)[2]);
+    await this.codeInputFourthDigit.fill(Array.from(codeFromeSMS)[3]);
   }
 }
 
