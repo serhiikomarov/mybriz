@@ -7,6 +7,7 @@ class AuthWithSMSCodePage {
 	public readonly codeInputSecondDigit: Locator;
 	public readonly codeInputThirdDigit: Locator;
 	public readonly codeInputFourthDigit: Locator;
+	public readonly inputHelper: Locator;
 	public readonly backButton: Locator;
 	public readonly logInButton: Locator;
 	public readonly sendCodeAgainButton: Locator;
@@ -18,6 +19,7 @@ class AuthWithSMSCodePage {
 		this.codeInputSecondDigit = page.locator('form > div:first-of-type > div:nth-of-type(2) > input');
 		this.codeInputThirdDigit = page.locator('form > div:first-of-type > div:nth-of-type(3) > input');
 		this.codeInputFourthDigit = page.locator('form > div:first-of-type > div:nth-of-type(4) > input');
+		this.inputHelper = page.locator('.login-enter-code-sms-container__form__error');
 		this.backButton = page.locator('.button__basic__secondary_bold');
 		this.logInButton = page.locator('button.MuiButtonBase-root:nth-child(2)');
 		this.sendCodeAgainButton = page.locator('button.button:nth-child(3)');

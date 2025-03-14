@@ -9,6 +9,7 @@ const errorMessages = {
 		undefinedUser: 'Користувача з таким логіном і паролем не знайдено.',
 		incorrectAccountNumberCode: '№ договору або Код з SMS некоректний. Перевірте і спробуйте знову.',
 		informingBySMSIsNotActive: 'Послуга SMS-інформування не активна для даного договору.',
+		invalidConfirmationCode: 'Введено неправильний код підтвердження.',
 	},
 	en: {
 		fieldRequired: 'This field is required',
@@ -20,6 +21,7 @@ const errorMessages = {
 		undefinedUser: 'User with this login and password not found.',
 		incorrectAccountNumberCode: 'Invalid Contract number or SMS-code. Check and try again.',
 		informingBySMSIsNotActive: 'The SMS-informing service is not active for this agreement.',
+		invalidConfirmationCode: 'Invalid confirmation code.',
 	},
 };
 

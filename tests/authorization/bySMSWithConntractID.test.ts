@@ -10,7 +10,9 @@ test.describe('Authorization by SMS with contract ID', () => {
 	let authWithSMSCodePage: AuthWithSMSCodePage;
 	let userID: number;
 	let userIDWithoutPhoneNumber: number;
+	let userForNegativeCases: number;
 	let phoneNumber: string;
+	let phoneNumberNegativeCases: string;
 	let codeFromSMS: string;
 
 	test.beforeAll(async ({ browser }) => {
@@ -27,6 +29,15 @@ test.describe('Authorization by SMS with contract ID', () => {
 
 		// Create user without phone number and get contract ID
 		userIDWithoutPhoneNumber = await createBUser(context.request);
+
+		// Create user for negative cases
+		userForNegativeCases = await createBUser(context.request);
+
+		// Generate phone number for negative cases
+		phoneNumberNegativeCases = generatePhoneNumber();
+
+		// Add phone number to userForNegativeCases
+		await addPhoneNumber(context.request, userForNegativeCases, phoneNumberNegativeCases);
 	});
 
 	test.beforeEach(async ({ page }) => {
@@ -89,5 +100,19 @@ test.describe('Authorization by SMS with contract ID', () => {
 		await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
 		await authWithSMSPage.sendSMS(String(userIDWithoutPhoneNumber));
 		await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.informingBySMSIsNotActive);
+	});
+
+	test('Authorization by SMS with empty and incorrect code UA EN', async ({ page }) => {
+		await authWithSMSPage.sendSMS(String(userForNegativeCases));
+		await authWithSMSCodePage.logInButton.click();
+		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.fieldRequired);
+		await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageEN}`);
+		await authWithSMSCodePage.logInButton.click();
+		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.fieldRequired);
+		// await authWithSMSCodePage.enterCodeFromSMS('9999');
+		// await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.invalidConfirmationCode);
+		// await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageUA}`);
+		// await authWithSMSCodePage.enterCodeFromSMS('9999');
+		// await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.invalidConfirmationCode);
 	});
 });
