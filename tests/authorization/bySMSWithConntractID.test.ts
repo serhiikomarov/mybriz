@@ -109,10 +109,15 @@ test.describe('Authorization by SMS with contract ID', () => {
 		await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageEN}`);
 		await authWithSMSCodePage.logInButton.click();
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.fieldRequired);
-		// await authWithSMSCodePage.enterCodeFromSMS('9999');
-		// await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.invalidConfirmationCode);
-		// await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageUA}`);
-		// await authWithSMSCodePage.enterCodeFromSMS('9999');
-		// await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.invalidConfirmationCode);
+		await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageUA}`);
+		await authWithSMSCodePage.enterCodeFromSMS('9999');
+		await page.waitForTimeout(1000); // waiting until inputs will be filled
+		await authWithSMSCodePage.logInButton.click();
+		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.invalidConfirmationCode);
+		await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageEN}`);
+		await authWithSMSCodePage.enterCodeFromSMS('9999');
+		await page.waitForTimeout(1000); // waiting until inputs will be filled
+		await authWithSMSCodePage.logInButton.click();
+		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.invalidConfirmationCode);
 	});
 });
