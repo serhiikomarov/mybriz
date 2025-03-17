@@ -12,6 +12,7 @@ const globalData = {
 	emptyString: '',
 	xssInjection: "<script>alert('XSS')</script>",
 	phoneNumberNotInDatabase: '0109999888',
+	invalidPhoneNumber: '8007654321';
 	contractIDNotInDatabase: '999999',
 };
 
