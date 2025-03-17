@@ -43,7 +43,17 @@ test.describe("Authorization by SMS with phone number", () => {
     await page.waitForURL(mainPage.pageUrl);
   });
 
-  // номер которого нет в базе
+  test("Authorization by SMS with phone number not in database UA", async () => {
+    await authWithSMSPage.sendSMS(globalData.phoneNumberNotInDatabase);
+    await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.ua.incorrectAccountNumberCode);
+  });
+
+  test("Authorization by SMS with phone number not in database EN", async ({ page }) => {
+    await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+    await authWithSMSPage.sendSMS(globalData.phoneNumberNotInDatabase);
+    await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.incorrectAccountNumberCode);
+  });
+
   // номер 8
   // номер 3
   // номер +3
