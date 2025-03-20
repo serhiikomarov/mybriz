@@ -60,6 +60,18 @@ function toPayAmountFunc(months: number, servicePrice: any) {
   return servicePrice * months;
 }
 
+function generateUsername(): string {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  const length = Math.floor(Math.random() * (16 - 8 + 1)) + 8;
+  let username = "";
+
+  for (let i = 0; i < length; i++) {
+    username += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  return username;
+}
+
 export {
   generateRandomEmail,
   daysInMonth,
@@ -68,4 +80,5 @@ export {
   formatCurrency,
   generatePhoneNumber,
   toPayAmountFunc,
+  generateUsername,
 };
