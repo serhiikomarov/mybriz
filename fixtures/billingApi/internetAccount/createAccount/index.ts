@@ -1,2 +1,2 @@
-export * from "./createInternetAccount.data";
-export * from "./createInternetAccountUtils";
+export * from './createInternetAccount.data';
+export * from './createInternetAccountUtils';
