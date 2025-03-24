@@ -43,7 +43,20 @@ test.describe('Authorization by login with phone number', () => {
 	test('Authorization by login with phone number and correct data', async ({ page }) => {
 		await loginPage.login(internetLogin, globalData.defaultInternetPassword);
 		await page.waitForURL(twoFactorPage.pageUrl);
+		await twoFactorPage.sendCodeButton.click();
+
 		await page.waitForTimeout(3000);
 		console.log(userID, internetAccountID, phoneNumber);
 	});
 });
+
+/*
+
+Авторизация с предусатновленным номером
+Авторизация со сменой номера и правильным кодом
+Авторизация со сменой номера
+пустой номер, невалидный номер
+
+Авторизация с правильным логином и неправильным паролем
+
+*/
