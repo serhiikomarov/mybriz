@@ -79,4 +79,10 @@ async function changeLanguage(page: Page, language: string) {
 	await page.click(`div.dropdown-select__select-options__item__btn:text("${language}")`);
 }
 
-export { generateRandomEmail, daysInMonth, remainingDaysInMonth, periodToPay, formatCurrency, generatePhoneNumber, toPayAmountFunc, generateLogin, changeLanguage };
+function getPhoneMask(phoneNumber: string) {
+	const array = [...phoneNumber];
+	const phoneMask = `+380.....${array[6]}${array[7]}${array[8]}${array[9]}`;
+	return phoneMask;
+}
+
+export { generateRandomEmail, daysInMonth, remainingDaysInMonth, periodToPay, formatCurrency, generatePhoneNumber, toPayAmountFunc, generateLogin, changeLanguage, getPhoneMask };

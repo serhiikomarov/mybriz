@@ -1,17 +1,17 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage, MainPage } from '../../pages';
-import { createBUser, generatePhoneNumber, addPhoneNumber, createInternetAccount, getInternetAccountID, generateLogin, changeLanguage } from '../../fixtures';
+import { LoginPage, MainPage, AuthTwoFactorPage } from '../../pages';
+import { createBUser, generatePhoneNumber, addPhoneNumber, createInternetAccount, getInternetAccountID, generateLogin, changeLanguage, getPhoneMask, waitForSMSCode } from '../../fixtures';
 import { setLanguage, errorMessages, globalData } from '../../testData';
-import { TwoFactorPage } from '../../pages/authTwoFactor.page';
 
 test.describe('Authorization by login with phone number', () => {
 	let loginPage: LoginPage;
 	let mainPage: MainPage;
-	let twoFactorPage: TwoFactorPage;
+	let authTwoFactorPage: AuthTwoFactorPage;
 	let userID: number;
 	let internetAccountID: number;
 	let internetLogin: string;
 	let phoneNumber: string;
+	let codeFromSMS: string;
 
 	test.beforeAll(async ({ browser }) => {
 		const context = await browser.newContext();
@@ -35,31 +35,38 @@ test.describe('Authorization by login with phone number', () => {
 	test.beforeEach(async ({ page }) => {
 		loginPage = new LoginPage(page);
 		mainPage = new MainPage(page);
-		twoFactorPage = new TwoFactorPage(page);
+		authTwoFactorPage = new AuthTwoFactorPage(page);
 		await loginPage.navigateToLoginPage();
 	});
 
-	test('Authorization by login with phone number and correct data', async ({ page }) => {
+	test('Authorization by login with phone number and correct data', async ({ page, request }) => {
 		await loginPage.login(internetLogin, globalData.defaultInternetPassword);
-		await page.waitForURL(twoFactorPage.pageUrl);
-		await changeLanguage(page, setLanguage.en);
-		await page.waitForTimeout(2000);
-		await changeLanguage(page, setLanguage.ua);
-		await page.waitForTimeout(2000);
-		await changeLanguage(page, setLanguage.en);
-		await page.waitForTimeout(2000);
-		// await page.waitForTimeout(3000);
-		// console.log(userID, internetAccountID, phoneNumber);
+		await page.waitForURL(authTwoFactorPage.pageUrl);
+		await expect(authTwoFactorPage.backButton).toHaveText(authTwoFactorPage.texts.ua.backButton);
+		await expect(authTwoFactorPage.title).toHaveText(authTwoFactorPage.texts.ua.title);
+		await expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.ua.phoneNumberDiscription);
+		await expect(authTwoFactorPage.phoneFormText).toHaveText(authTwoFactorPage.texts.ua.phoneFormText);
+		const phoneMask = getPhoneMask(phoneNumber);
+		await expect(authTwoFactorPage.maskedPhoneNumber).toHaveText(phoneMask);
+		await expect(authTwoFactorPage.changePhoneNumberButton).toHaveText(authTwoFactorPage.texts.ua.changePhoneNumberButton);
+		await expect(authTwoFactorPage.sendCodeButton).toHaveText(authTwoFactorPage.texts.ua.sendCodeButtonText);
+		await expect(authTwoFactorPage.socialsText).toHaveText(authTwoFactorPage.texts.ua.socialsText);
+		expect(authTwoFactorPage.appleIDAuthButton).toBeVisible();
+		expect(authTwoFactorPage.googleAuthButton).toBeVisible();
+		expect(authTwoFactorPage.facebookAuthButton).toBeVisible();
+		authTwoFactorPage.sendCodeButton.click();
+		await expect(authTwoFactorPage.backButton).toHaveText(authTwoFactorPage.texts.ua.backButton);
+		await expect(authTwoFactorPage.title).toHaveText(authTwoFactorPage.texts.ua.title);
+		await expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.ua.codeFromSMSDiscription);
+		await expect(authTwoFactorPage.logInButton).toHaveText(authTwoFactorPage.texts.ua.loginButtonText);
+		await expect(authTwoFactorPage.socialsText).toHaveText(authTwoFactorPage.texts.ua.socialsText);
+		expect(authTwoFactorPage.appleIDAuthButton).toBeVisible();
+		expect(authTwoFactorPage.googleAuthButton).toBeVisible();
+		expect(authTwoFactorPage.facebookAuthButton).toBeVisible();
+		codeFromSMS = await waitForSMSCode(request, phoneNumber);
+		await authTwoFactorPage.enterCodeFromSMS(codeFromSMS);
+		await expect(authTwoFactorPage.codeInputFourthDigit).toHaveValue(Array.from(codeFromSMS)[3]);
+		authTwoFactorPage.logInButton.click();
+		await page.waitForURL(mainPage.pageUrl);
 	});
 });
-
-/*
-
-Авторизация с предусатновленным номером
-Авторизация со сменой номера и правильным кодом
-Авторизация со сменой номера
-пустой номер, невалидный номер
-
-Авторизация с правильным логином и неправильным паролем
-
-*/

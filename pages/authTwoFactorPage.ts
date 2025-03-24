@@ -1,6 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 
-class TwoFactorPage {
+class AuthTwoFactorPage {
 	private readonly page: Page;
 	public readonly pageUrl: string;
 	public readonly backButton: Locator;
@@ -24,13 +24,13 @@ class TwoFactorPage {
 	public readonly googleAuthButton: Locator;
 	public readonly facebookAuthButton: Locator;
 
-	private readonly texts = {
+	public readonly texts = {
 		ua: {
 			backButton: 'Назад',
 			title: 'Авторизація',
 			phoneNumberDiscription: 'Використовуйте номер телефону як ідентифікатор. Введіть код перевірки з SMS-повідомлення.',
 			codeFromSMSDiscription: 'Для входу в особистий кабінет введіть перевірочний код із SMS.',
-			phoneFormText: 'Надіслати код на номер телефону',
+			phoneFormText: 'Надіслати код на номер телефону:',
 			changePhoneNumberButton: 'Змінити',
 			sendCodeButtonText: 'Надіслати код',
 			socialsText: 'або вхід через соц. мережі',
@@ -41,7 +41,7 @@ class TwoFactorPage {
 			title: 'Authorization',
 			phoneNumberDiscription: 'Use a phone number as an identifier. Enter the verification code from the SMS message.',
 			codeFromSMSDiscription: 'To enter your personal account, enter the verification code from the SMS.',
-			phoneFormText: 'Send code to phone number',
+			phoneFormText: 'Send code to phone number:',
 			changePhoneNumberButton: 'Change',
 			sendCodeButtonText: 'Send code',
 			socialsText: 'or login with social networks',
@@ -86,4 +86,4 @@ class TwoFactorPage {
 	}
 }
 
-export { TwoFactorPage };
+export { AuthTwoFactorPage };
