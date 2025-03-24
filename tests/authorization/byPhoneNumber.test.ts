@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage, MainPage } from '../../pages';
 import { createBUser, generatePhoneNumber, addPhoneNumber } from '../../fixtures';
-import { testData, errorMessages, globalData } from '../../testData';
+import { errorMessages, globalData } from '../../testData';
 
 test.describe('Authorization by phone number and password', () => {
 	let loginPage: LoginPage;

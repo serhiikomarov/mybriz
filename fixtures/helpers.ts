@@ -1,3 +1,5 @@
+import { Page } from 'playwright';
+
 function generateRandomEmail(): string {
 	const length = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
 	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -72,4 +74,9 @@ function generateLogin(length: number): string {
 	return login;
 }
 
-export { generateRandomEmail, daysInMonth, remainingDaysInMonth, periodToPay, formatCurrency, generatePhoneNumber, toPayAmountFunc, generateLogin };
+async function changeLanguage(page: Page, language: string) {
+	await page.click('.dropdown-select__select-block');
+	await page.click(`div.dropdown-select__select-options__item__btn:text("${language}")`);
+}
+
+export { generateRandomEmail, daysInMonth, remainingDaysInMonth, periodToPay, formatCurrency, generatePhoneNumber, toPayAmountFunc, generateLogin, changeLanguage };

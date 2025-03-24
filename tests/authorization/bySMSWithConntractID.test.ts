@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage, MainPage, AuthWithSMSPage, AuthWithSMSCodePage } from '../../pages';
-import { createBUser, generatePhoneNumber, addPhoneNumber, waitForSMSCode } from '../../fixtures';
-import { testData, errorMessages, globalData } from '../../testData';
+import { createBUser, generatePhoneNumber, addPhoneNumber, waitForSMSCode, changeLanguage } from '../../fixtures';
+import { setLanguage, errorMessages, globalData } from '../../testData';
 
 test.describe('Authorization by SMS with contract ID', () => {
 	let loginPage: LoginPage;
@@ -64,7 +64,7 @@ test.describe('Authorization by SMS with contract ID', () => {
 	});
 
 	test('Authorization by SMS with empty input EN', async ({ page }) => {
-		await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSPage.sendSMS(String(''));
 		await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.fieldRequired);
 	});
@@ -75,7 +75,7 @@ test.describe('Authorization by SMS with contract ID', () => {
 	});
 
 	test('Authorization by SMS with short contract ID EN', async ({ page }) => {
-		await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSPage.sendSMS(globalData.invalid3digitContractID);
 		await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.contractIDIsShort);
 	});
@@ -86,7 +86,7 @@ test.describe('Authorization by SMS with contract ID', () => {
 	});
 
 	test('Authorization by SMS with contract ID not in database EN', async ({ page }) => {
-		await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSPage.sendSMS(globalData.contractIDNotInDatabase);
 		await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.incorrectAccountNumberCode);
 	});
@@ -97,7 +97,7 @@ test.describe('Authorization by SMS with contract ID', () => {
 	});
 
 	test('Authorization by SMS with contract ID without SMS informing EN', async ({ page }) => {
-		await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSPage.sendSMS(String(userIDWithoutPhoneNumber));
 		await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.informingBySMSIsNotActive);
 	});
@@ -106,15 +106,15 @@ test.describe('Authorization by SMS with contract ID', () => {
 		await authWithSMSPage.sendSMS(String(userForNegativeCases));
 		await authWithSMSCodePage.logInButton.click();
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.fieldRequired);
-		await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSCodePage.logInButton.click();
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.fieldRequired);
-		await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageUA}`);
+		await changeLanguage(page, setLanguage.ua);
 		await authWithSMSCodePage.enterCodeFromSMS('9999');
 		await page.waitForTimeout(1000); // waiting until inputs will be filled
 		await authWithSMSCodePage.logInButton.click();
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.invalidConfirmationCode);
-		await page.goto(`${authWithSMSCodePage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSCodePage.enterCodeFromSMS('9999');
 		await page.waitForTimeout(1000); // waiting until inputs will be filled
 		await authWithSMSCodePage.logInButton.click();

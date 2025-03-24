@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage, MainPage } from '../../pages';
-import { createBUser, generatePhoneNumber, addPhoneNumber, createInternetAccount, getInternetAccountID } from '../../fixtures';
-import { testData, errorMessages, globalData } from '../../testData';
-import { generateLogin } from '../../fixtures';
+import { createBUser, generatePhoneNumber, addPhoneNumber, createInternetAccount, getInternetAccountID, generateLogin, changeLanguage } from '../../fixtures';
+import { setLanguage, errorMessages, globalData } from '../../testData';
 import { TwoFactorPage } from '../../pages/authTwoFactor.page';
 
 test.describe('Authorization by login with phone number', () => {
@@ -43,10 +42,14 @@ test.describe('Authorization by login with phone number', () => {
 	test('Authorization by login with phone number and correct data', async ({ page }) => {
 		await loginPage.login(internetLogin, globalData.defaultInternetPassword);
 		await page.waitForURL(twoFactorPage.pageUrl);
-		await twoFactorPage.sendCodeButton.click();
-
-		await page.waitForTimeout(3000);
-		console.log(userID, internetAccountID, phoneNumber);
+		await changeLanguage(page, setLanguage.en);
+		await page.waitForTimeout(2000);
+		await changeLanguage(page, setLanguage.ua);
+		await page.waitForTimeout(2000);
+		await changeLanguage(page, setLanguage.en);
+		await page.waitForTimeout(2000);
+		// await page.waitForTimeout(3000);
+		// console.log(userID, internetAccountID, phoneNumber);
 	});
 });
 

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage, MainPage } from '../../pages';
-import { createBUser, addEmail, emailConfirmationCode, confirmEmail, generateRandomEmail } from '../../fixtures';
-import { testData, errorMessages, globalData } from '../../testData';
+import { createBUser, addEmail, emailConfirmationCode, confirmEmail, generateRandomEmail, changeLanguage } from '../../fixtures';
+import { setLanguage, errorMessages, globalData } from '../../testData';
 
 test.describe('Authorization by email and password', () => {
 	let loginPage: LoginPage;
@@ -46,7 +46,7 @@ test.describe('Authorization by email and password', () => {
 	});
 
 	test('Authorization by email and empty password EN', async ({ page }) => {
-		await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await loginPage.login(email, globalData.emptyString);
 		await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.fieldRequired);
 	});
@@ -57,7 +57,7 @@ test.describe('Authorization by email and password', () => {
 	});
 
 	test('Authorization by email with incorrect domen EN', async ({ page }) => {
-		await page.goto(`${loginPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await loginPage.login(globalData.emailIncorrectDomen, globalData.defaultPassword);
 		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
 	});

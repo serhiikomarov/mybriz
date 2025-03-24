@@ -1,6 +1,6 @@
-const testData = {
-	languageEN: '?lang=en',
-	languageUA: '?lang=ua',
+const setLanguage = {
+	en: 'en',
+	ua: 'ua',
 };
 
-export { testData };
+export { setLanguage };

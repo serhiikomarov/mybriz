@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage, MainPage, AuthWithSMSPage, AuthWithSMSCodePage } from '../../pages';
-import { createBUser, generatePhoneNumber, addPhoneNumber, waitForSMSCode } from '../../fixtures';
-import { testData, errorMessages, globalData } from '../../testData';
+import { createBUser, generatePhoneNumber, addPhoneNumber, waitForSMSCode, changeLanguage } from '../../fixtures';
+import { setLanguage, errorMessages, globalData } from '../../testData';
 
 test.describe('Authorization by SMS with phone number', () => {
 	let loginPage: LoginPage;
@@ -50,7 +50,7 @@ test.describe('Authorization by SMS with phone number', () => {
 	});
 
 	test('Authorization by SMS with phone number not in database EN', async ({ page }) => {
-		await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSPage.sendSMS(globalData.phoneNumberNotInDatabase);
 		await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.incorrectAccountNumberCode);
 	});
@@ -61,7 +61,7 @@ test.describe('Authorization by SMS with phone number', () => {
 	});
 
 	test('Authorization by SMS with ivalid phone number EN', async ({ page }) => {
-		await page.goto(`${authWithSMSPage.pageUrl}${testData.languageEN}`);
+		await changeLanguage(page, setLanguage.en);
 		await authWithSMSPage.sendSMS(globalData.invalidPhoneNumber);
 		await expect(authWithSMSPage.inputHelper).toContainText(errorMessages.en.invalidPhoneNumber);
 	});
