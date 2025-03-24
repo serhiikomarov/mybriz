@@ -3,7 +3,7 @@ import { getAuthToken } from '../../auth/authenticate/authUtils';
 import { generateLogin } from '../../../helpers';
 import { defaultInternetAccountObj } from './createInternetAccount.data';
 
-async function createInternetAccount(request: any, userID: number, login: any) {
+async function createInternetAccount(request: any, userID: number, login: string) {
 	const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/internets`;
 	const token = await getAuthToken(request);
 	console.log(token);
@@ -22,7 +22,7 @@ async function createInternetAccount(request: any, userID: number, login: any) {
 
 async function getInternetAccountID(request: any, userID: number, login: string) {
 	const responseBody = await createInternetAccount(request, userID, login);
-	const accountID = responseBody.data;
+	let accountID = responseBody.data;
 	return accountID;
 }
 
