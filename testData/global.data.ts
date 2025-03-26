@@ -15,6 +15,7 @@ const globalData = {
 	phoneNumberNotInDatabase: '0109999888',
 	invalidPhoneNumber: '8007654321',
 	contractIDNotInDatabase: '999999',
+	invalidShortPhoneNumber: '093123456',
 };
 
 export { globalData };

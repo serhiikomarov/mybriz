@@ -115,6 +115,18 @@ test.describe('Authorization by login with phone number', () => {
 		expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.fieldRequired);
 	});
 
+	test('Authorization by login with invalid short phone number', async ({ page, request }) => {
+		await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
+		await page.waitForURL(authTwoFactorPage.pageUrl);
+		await authTwoFactorPage.phoneNumberInput.fill(globalData.invalidShortPhoneNumber);
+		await authTwoFactorPage.sendCodeButton.click();
+		expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.invalidShortPhoneNumber);
+		// Checking input error in English localization
+		await changeLanguage(page, setLanguage.en);
+		await authTwoFactorPage.sendCodeButton.click();
+		expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.invalidShortPhoneNumber);
+	});
+
 	/*
 	incorrect login and password
 	phone number from another account
