@@ -1,9 +1,10 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 class AuthTwoFactorPage {
 	private readonly page: Page;
 	public readonly pageUrl: string;
 	public readonly backButton: Locator;
+	public readonly picture: Locator;
 	public readonly title: Locator;
 	public readonly discription: Locator;
 	public readonly phoneNumberInput: Locator;
@@ -53,6 +54,7 @@ class AuthTwoFactorPage {
 		this.page = page;
 		this.pageUrl = 'https://devcabinet.briz.ua/login/two-factor-auth';
 		this.backButton = page.locator('button.button__text__primary:nth-child(1)');
+		this.picture = page.locator('.envelope-icon');
 		this.title = page.locator('.bold');
 		this.discription = page.locator('.two-factor-auth__content-container__content__form__description');
 		this.phoneNumberInput = page.locator('.MuiInputBase-root input');
@@ -83,6 +85,29 @@ class AuthTwoFactorPage {
 		await this.codeInputSecondDigit.fill(Array.from(codeFromSMS)[1]);
 		await this.codeInputThirdDigit.fill(Array.from(codeFromSMS)[2]);
 		await this.codeInputFourthDigit.fill(Array.from(codeFromSMS)[3]);
+	}
+
+	async checkBasicElementsLocalization(lang: 'ua' | 'en') {
+		const texts = this.texts[lang];
+
+		const elementsToCheck = [
+			{ element: this.backButton, expectedText: texts.backButton },
+			{ element: this.picture, visible: true },
+			{ element: this.title, expectedText: texts.title },
+			{ element: this.socialsText, expectedText: texts.socialsText },
+			{ element: this.appleIDAuthButton, visible: true },
+			{ element: this.googleAuthButton, visible: true },
+			{ element: this.facebookAuthButton, visible: true },
+		];
+
+		for (const { element, expectedText, visible } of elementsToCheck) {
+			if (expectedText) {
+				await expect(element).toHaveText(expectedText);
+			}
+			if (visible) {
+				await expect(element).toBeVisible();
+			}
+		}
 	}
 }
 

@@ -50,82 +50,35 @@ test.describe('Authorization by login without phone number', () => {
 		await loginPage.login(internetLogin2, globalData.defaultInternetPassword);
 		await page.waitForURL(authTwoFactorPage.pageUrl);
 		// Checking 2FA (phone number page) texts and elements in Ukrainian localization
-		expect(authTwoFactorPage.backButton).toHaveText(authTwoFactorPage.texts.ua.backButton);
-		// await authTwoFactorPage.backButton.click();
-		// await loginPage.login(internetLogin2, globalData.defaultInternetPassword);
-		// await page.waitForURL(authTwoFactorPage.pageUrl);
-		expect(authTwoFactorPage.title).toHaveText(authTwoFactorPage.texts.ua.title);
+		await authTwoFactorPage.checkBasicElementsLocalization('ua');
 		expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.ua.phoneNumberDiscription);
-		/*
-        need to check placeholder and picture
-		expect(authTwoFactorPage.phoneNumberInput).toHaveText('Номер телефону');
-        */
 		expect(authTwoFactorPage.sendCodeButton).toHaveText(authTwoFactorPage.texts.ua.sendCodeButtonText);
-		await expect(authTwoFactorPage.socialsText).toHaveText(authTwoFactorPage.texts.ua.socialsText);
-		expect(authTwoFactorPage.appleIDAuthButton).toBeVisible();
-		expect(authTwoFactorPage.googleAuthButton).toBeVisible();
-		expect(authTwoFactorPage.facebookAuthButton).toBeVisible();
 		// Checking 2FA (phone number page) texts and elements in English localization
 		await changeLanguage(page, setLanguage.en);
-		await expect(authTwoFactorPage.backButton).toHaveText(authTwoFactorPage.texts.en.backButton);
-		await expect(authTwoFactorPage.title).toHaveText(authTwoFactorPage.texts.en.title);
-		await expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.en.phoneNumberDiscription);
-		/*
-        need to check placeholder and picture
-		expect(authTwoFactorPage.phoneNumberInput).toHaveText('Phone number');
-        */
+		await page.waitForTimeout(1000);
+		await authTwoFactorPage.checkBasicElementsLocalization('en');
+		expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.en.phoneNumberDiscription);
 		expect(authTwoFactorPage.sendCodeButton).toHaveText(authTwoFactorPage.texts.en.sendCodeButtonText);
-		await expect(authTwoFactorPage.socialsText).toHaveText(authTwoFactorPage.texts.en.socialsText);
-		expect(authTwoFactorPage.appleIDAuthButton).toBeVisible();
-		expect(authTwoFactorPage.googleAuthButton).toBeVisible();
-		expect(authTwoFactorPage.facebookAuthButton).toBeVisible();
 		await authTwoFactorPage.phoneNumberInput.fill(phoneNumber2);
-		console.log(phoneNumber2);
-		await page.waitForTimeout(3000);
 		await authTwoFactorPage.sendCodeButton.click();
-		await page.waitForTimeout(2000);
 		// Checking 2FA (code from SMS page) texts and elements in Ukrainian localization
 		await changeLanguage(page, setLanguage.ua);
-		await page.waitForTimeout(2000);
-		await expect(authTwoFactorPage.backButton).toHaveText(authTwoFactorPage.texts.ua.backButton);
-		await expect(authTwoFactorPage.title).toHaveText(authTwoFactorPage.texts.ua.title);
-		await expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.ua.codeFromSMSDiscription);
-		await expect(authTwoFactorPage.logInButton).toHaveText(authTwoFactorPage.texts.ua.loginButtonText);
-		await expect(authTwoFactorPage.socialsText).toHaveText(authTwoFactorPage.texts.ua.socialsText);
-		expect(authTwoFactorPage.appleIDAuthButton).toBeVisible();
-		expect(authTwoFactorPage.googleAuthButton).toBeVisible();
-		expect(authTwoFactorPage.facebookAuthButton).toBeVisible();
+		await page.waitForTimeout(1000);
+		await authTwoFactorPage.checkBasicElementsLocalization('ua');
+		expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.ua.codeFromSMSDiscription);
+		expect(authTwoFactorPage.logInButton).toHaveText(authTwoFactorPage.texts.ua.loginButtonText);
 		// Checking 2FA (code from SMS page) texts and elements in English localization
 		await changeLanguage(page, setLanguage.en);
-		await expect(authTwoFactorPage.backButton).toHaveText(authTwoFactorPage.texts.en.backButton);
-		await expect(authTwoFactorPage.title).toHaveText(authTwoFactorPage.texts.en.title);
-		await expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.en.codeFromSMSDiscription);
-		await expect(authTwoFactorPage.logInButton).toHaveText(authTwoFactorPage.texts.en.loginButtonText);
-		await expect(authTwoFactorPage.socialsText).toHaveText(authTwoFactorPage.texts.en.socialsText);
-		expect(authTwoFactorPage.appleIDAuthButton).toBeVisible();
-		expect(authTwoFactorPage.googleAuthButton).toBeVisible();
-		expect(authTwoFactorPage.facebookAuthButton).toBeVisible();
-		console.log(phoneNumber2);
+		await page.waitForTimeout(1000);
+		await authTwoFactorPage.checkBasicElementsLocalization('en');
+		expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.en.codeFromSMSDiscription);
+		expect(authTwoFactorPage.logInButton).toHaveText(authTwoFactorPage.texts.en.loginButtonText);
 		codeFromSMS = await waitForSMSCode(request, phoneNumber2);
 		await authTwoFactorPage.enterCodeFromSMS(codeFromSMS);
-		console.log(userID2);
-		await page.waitForTimeout(2000);
-		//await expect(authTwoFactorPage.codeInputFourthDigit).toHaveValue(Array.from(codeFromSMS)[3]);
+		expect(authTwoFactorPage.codeInputFourthDigit).toHaveValue(Array.from(codeFromSMS)[3]);
 		await authTwoFactorPage.logInButton.click();
 		await page.waitForURL(mainPage.pageUrl);
 	});
-
-	// test('Authorization by login with invalid short phone number', async ({ page, request }) => {
-	// 	await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
-	// 	await page.waitForURL(authTwoFactorPage.pageUrl);
-	// 	await authTwoFactorPage.phoneNumberInput.fill(globalData.invalidShortPhoneNumber);
-	// 	await authTwoFactorPage.sendCodeButton.click();
-	// 	expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.invalidShortPhoneNumber);
-	// 	// Checking input error in English localization
-	// 	await changeLanguage(page, setLanguage.en);
-	// 	await authTwoFactorPage.sendCodeButton.click();
-	// 	expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.invalidShortPhoneNumber);
-	// });
 
 	/*
 	incorrect login and password
