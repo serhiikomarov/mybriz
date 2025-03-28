@@ -19,6 +19,8 @@ const globalData = {
 	phoneNumberPrefix: '+38',
 	stringLettersOnly: 'teststring',
 	wrongSMSCode: '9999',
+	string1digit: '1',
+	string3digit: '888',
 };
 
 export { globalData };
