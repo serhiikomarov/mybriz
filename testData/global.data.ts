@@ -13,10 +13,11 @@ const globalData = {
 	emptyString: '',
 	xssInjection: "<script>alert('XSS')</script>",
 	phoneNumberNotInDatabase: '0109999888',
-	invalidPhoneNumber: '8007654321',
+	incorrectFormatPhoneNumber: '8007654321',
 	contractIDNotInDatabase: '999999',
 	invalidShortPhoneNumber: '093123456',
 	phoneNumberPrefix: '+38',
+	stringLettersOnly: 'teststring',
 };
 
 export { globalData };

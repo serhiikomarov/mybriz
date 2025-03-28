@@ -13,6 +13,7 @@ const errorMessages = {
 		invalidPhoneNumber: 'Поле має бути коректним телефоном чи номером договору.',
 		invalidShortPhoneNumber: 'Кількість символів - 10',
 		usedPhoneNumber: 'Цей СМС-номер вже використовується.',
+		incorrectFormatPhoneNumber: 'Поле номер телефону має невірний формат',
 	},
 	en: {
 		fieldRequired: 'This field is required',
@@ -28,6 +29,7 @@ const errorMessages = {
 		invalidPhoneNumber: 'The attribute must be a valid phone number or contract number.',
 		invalidShortPhoneNumber: 'Number of characters at least - 10',
 		usedPhoneNumber: 'This SMS number is already used.',
+		incorrectFormatPhoneNumber: 'The phone number is in wrong format',
 	},
 };
 

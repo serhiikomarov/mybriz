@@ -16,7 +16,6 @@ test.describe('Authorization by login without phone number', () => {
 	let phoneNumber: string;
 	let phoneNumber2: string;
 	let codeFromSMS: string;
-	let formatedPhoneNumber: string;
 
 	test.beforeAll(async ({ browser }) => {
 		const context = await browser.newContext();
@@ -60,7 +59,7 @@ test.describe('Authorization by login without phone number', () => {
 		expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.en.phoneNumberDiscription);
 		expect(authTwoFactorPage.sendCodeButton).toHaveText(authTwoFactorPage.texts.en.sendCodeButtonText);
 		await authTwoFactorPage.phoneNumberInput.fill(phoneNumber2);
-		// Checking the entered phone number is displaying
+		// Checking the entered phone number is displaying correctly
 		expect(authTwoFactorPage.phoneNumberPrefix).toHaveText(globalData.phoneNumberPrefix);
 		expect(authTwoFactorPage.phoneNumberInputPhoneNumber).toHaveAttribute('value', formatPhoneNumber(phoneNumber2));
 		await authTwoFactorPage.sendCodeButton.click();
@@ -86,11 +85,39 @@ test.describe('Authorization by login without phone number', () => {
 		await page.waitForURL(authTwoFactorPage.pageUrl);
 		//Checking the error in the phone number input in Ukrainian localization
 		await authTwoFactorPage.sendCodeButton.click();
-		expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.fieldRequired);
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.fieldRequired);
 		//Checking the error in the phone number input in English localization
 		await changeLanguage(page, setLanguage.en);
 		await authTwoFactorPage.sendCodeButton.click();
-		expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.fieldRequired);
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.fieldRequired);
+	});
+
+	test('Authorization by login with invalid short phone number', async ({ page, request }) => {
+		await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
+		await page.waitForURL(authTwoFactorPage.pageUrl);
+		//Checking the error in the phone number input in Ukrainian localization
+		await authTwoFactorPage.phoneNumberInput.fill(globalData.invalidShortPhoneNumber);
+		await authTwoFactorPage.sendCodeButton.click();
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.invalidShortPhoneNumber);
+		//Checking the error in the phone number input in English localization
+		await changeLanguage(page, setLanguage.en);
+		await authTwoFactorPage.phoneNumberInput.fill(globalData.invalidShortPhoneNumber);
+		await authTwoFactorPage.sendCodeButton.click();
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.invalidShortPhoneNumber);
+	});
+
+	test('Authorization by login with incorrect format phone number', async ({ page, request }) => {
+		await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
+		await page.waitForURL(authTwoFactorPage.pageUrl);
+		//Checking the error in the phone number input in Ukrainian localization
+		await authTwoFactorPage.phoneNumberInput.fill(globalData.incorrectFormatPhoneNumber);
+		await authTwoFactorPage.sendCodeButton.click();
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.incorrectFormatPhoneNumber);
+		//Checking the error in the phone number input in English localization
+		await changeLanguage(page, setLanguage.en);
+		await authTwoFactorPage.phoneNumberInput.fill(globalData.incorrectFormatPhoneNumber);
+		await authTwoFactorPage.sendCodeButton.click();
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.incorrectFormatPhoneNumber);
 	});
 
 	test('Authorization by login with phone number from another account', async ({ page, request }) => {
@@ -99,7 +126,7 @@ test.describe('Authorization by login without phone number', () => {
 		//Checking the error in the phone number input in Ukrainian localization
 		await authTwoFactorPage.phoneNumberInput.fill(phoneNumber);
 		await authTwoFactorPage.sendCodeButton.click();
-		expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.usedPhoneNumber);
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.usedPhoneNumber);
 		//Checking the error in the phone number input in English localization
 		await changeLanguage(page, setLanguage.en);
 		await authTwoFactorPage.phoneNumberInput.fill(phoneNumber);
@@ -107,13 +134,21 @@ test.describe('Authorization by login without phone number', () => {
 		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.usedPhoneNumber);
 	});
 
-	//проверить отображение номера телефона с +38 после ввода в инпут (префикс и номер телефона)
+	test('Authorization by login with letters in the phone number input', async ({ page, request }) => {
+		await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
+		await page.waitForURL(authTwoFactorPage.pageUrl);
+		await authTwoFactorPage.phoneNumberInput.click();
+		await page.keyboard.type(`${globalData.stringLettersOnly}`, { delay: 100 });
+		await expect(authTwoFactorPage.phoneNumberInputPhoneNumber).toHaveAttribute('value', globalData.emptyString);
+	});
+
+	//
 
 	/*
-	incorrect login and password
-	success change phone number flow
-	invalid phone number
-	empty code field
-	incorrect code
+	пустой код
+	неправильный код
+	ввести буквы в коде
+	ввставить буквы в коде
+
 	*/
 });
