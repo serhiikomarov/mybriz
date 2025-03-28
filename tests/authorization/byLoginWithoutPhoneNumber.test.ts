@@ -134,11 +134,18 @@ test.describe('Authorization by login without phone number', () => {
 		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.usedPhoneNumber);
 	});
 
-	test('Authorization by login with letters in the phone number input', async ({ page, request }) => {
+	test('Authorization by login write letters in the phone number input', async ({ page, request }) => {
 		await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
 		await page.waitForURL(authTwoFactorPage.pageUrl);
 		await authTwoFactorPage.phoneNumberInput.click();
 		await page.keyboard.type(`${globalData.stringLettersOnly}`, { delay: 100 });
+		await expect(authTwoFactorPage.phoneNumberInputPhoneNumber).toHaveAttribute('value', globalData.emptyString);
+	});
+
+	test('Authorization by login paste letters in the phone number input', async ({ page, request }) => {
+		await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
+		await page.waitForURL(authTwoFactorPage.pageUrl);
+		await authTwoFactorPage.phoneNumberInput.fill(globalData.stringLettersOnly);
 		await expect(authTwoFactorPage.phoneNumberInputPhoneNumber).toHaveAttribute('value', globalData.emptyString);
 	});
 
