@@ -18,6 +18,7 @@ const globalData = {
 	invalidShortPhoneNumber: '093123456',
 	phoneNumberPrefix: '+38',
 	stringLettersOnly: 'teststring',
+	wrongSMSCode: '9999',
 };
 
 export { globalData };

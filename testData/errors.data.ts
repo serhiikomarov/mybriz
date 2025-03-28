@@ -14,6 +14,7 @@ const errorMessages = {
 		invalidShortPhoneNumber: 'Кількість символів - 10',
 		usedPhoneNumber: 'Цей СМС-номер вже використовується.',
 		incorrectFormatPhoneNumber: 'Поле номер телефону має невірний формат',
+		wrongCode: 'Неправильний код.',
 	},
 	en: {
 		fieldRequired: 'This field is required',
@@ -30,6 +31,7 @@ const errorMessages = {
 		invalidShortPhoneNumber: 'Number of characters at least - 10',
 		usedPhoneNumber: 'This SMS number is already used.',
 		incorrectFormatPhoneNumber: 'The phone number is in wrong format',
+		wrongCode: 'Invalid code.',
 	},
 };
 
