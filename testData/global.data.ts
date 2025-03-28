@@ -16,6 +16,7 @@ const globalData = {
 	invalidPhoneNumber: '8007654321',
 	contractIDNotInDatabase: '999999',
 	invalidShortPhoneNumber: '093123456',
+	phoneNumberPrefix: '+38',
 };
 
 export { globalData };

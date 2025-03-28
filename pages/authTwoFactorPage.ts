@@ -8,6 +8,8 @@ class AuthTwoFactorPage {
 	public readonly title: Locator;
 	public readonly discription: Locator;
 	public readonly phoneNumberInput: Locator;
+	public readonly phoneNumberPrefix: Locator;
+	public readonly phoneNumberInputPhoneNumber: Locator;
 	public readonly inputHelper: Locator;
 	public readonly phoneFormText: Locator;
 	public readonly maskedPhoneNumber: Locator;
@@ -58,6 +60,8 @@ class AuthTwoFactorPage {
 		this.title = page.locator('.bold');
 		this.discription = page.locator('.two-factor-auth__content-container__content__form__description');
 		this.phoneNumberInput = page.locator('.MuiInputBase-root input');
+		this.phoneNumberPrefix = page.locator('.MuiTypography-root');
+		this.phoneNumberInputPhoneNumber = page.locator('#mui-4');
 		this.inputHelper = page.locator('#mui-4-helper-text');
 		this.phoneFormText = page.locator('.two-factor-auth__content-container__content__form__phone-container__text');
 		this.maskedPhoneNumber = page.locator('.two-factor-auth__content-container__content__form__phone-container__phone');

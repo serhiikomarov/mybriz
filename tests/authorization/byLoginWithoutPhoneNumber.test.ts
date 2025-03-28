@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage, MainPage, AuthTwoFactorPage } from '../../pages';
-import { createBUser, generatePhoneNumber, addPhoneNumber, getInternetAccountID, generateLogin, changeLanguage, getPhoneMask, waitForSMSCode } from '../../fixtures';
+import { createBUser, generatePhoneNumber, addPhoneNumber, getInternetAccountID, generateLogin, changeLanguage, waitForSMSCode, formatPhoneNumber } from '../../fixtures';
 import { setLanguage, errorMessages, globalData } from '../../testData';
 
 test.describe('Authorization by login without phone number', () => {
@@ -16,6 +16,7 @@ test.describe('Authorization by login without phone number', () => {
 	let phoneNumber: string;
 	let phoneNumber2: string;
 	let codeFromSMS: string;
+	let formatedPhoneNumber: string;
 
 	test.beforeAll(async ({ browser }) => {
 		const context = await browser.newContext();
@@ -59,6 +60,9 @@ test.describe('Authorization by login without phone number', () => {
 		expect(authTwoFactorPage.discription).toHaveText(authTwoFactorPage.texts.en.phoneNumberDiscription);
 		expect(authTwoFactorPage.sendCodeButton).toHaveText(authTwoFactorPage.texts.en.sendCodeButtonText);
 		await authTwoFactorPage.phoneNumberInput.fill(phoneNumber2);
+		// Checking the entered phone number is displaying
+		expect(authTwoFactorPage.phoneNumberPrefix).toHaveText(globalData.phoneNumberPrefix);
+		expect(authTwoFactorPage.phoneNumberInputPhoneNumber).toHaveAttribute('value', formatPhoneNumber(phoneNumber2));
 		await authTwoFactorPage.sendCodeButton.click();
 		// Checking 2FA (code from SMS page) texts and elements in Ukrainian localization
 		await changeLanguage(page, setLanguage.ua);
@@ -100,8 +104,10 @@ test.describe('Authorization by login without phone number', () => {
 		await changeLanguage(page, setLanguage.en);
 		await authTwoFactorPage.phoneNumberInput.fill(phoneNumber);
 		await authTwoFactorPage.sendCodeButton.click();
-		expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.usedPhoneNumber);
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.usedPhoneNumber);
 	});
+
+	//проверить отображение номера телефона с +38 после ввода в инпут (префикс и номер телефона)
 
 	/*
 	incorrect login and password

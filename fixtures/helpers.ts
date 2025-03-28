@@ -85,4 +85,10 @@ function getPhoneMask(phoneNumber: string) {
 	return phoneMask;
 }
 
-export { generateRandomEmail, daysInMonth, remainingDaysInMonth, periodToPay, formatCurrency, generatePhoneNumber, toPayAmountFunc, generateLogin, changeLanguage, getPhoneMask };
+function formatPhoneNumber(phoneNumber: string) {
+	const array = [...phoneNumber];
+	const result = `${array[0]}${array[1]}${array[2]} ${array[3]}${array[4]}${array[5]} ${array[6]}${array[7]} ${array[8]}${array[9]}`;
+	return result;
+}
+
+export { generateRandomEmail, daysInMonth, remainingDaysInMonth, periodToPay, formatCurrency, generatePhoneNumber, toPayAmountFunc, generateLogin, changeLanguage, getPhoneMask, formatPhoneNumber };
