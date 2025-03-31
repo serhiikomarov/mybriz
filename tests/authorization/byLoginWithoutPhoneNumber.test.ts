@@ -99,7 +99,6 @@ test.describe("Authorization by login without phone number", () => {
     await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.fieldRequired);
     // Checking the error in the phone number input in English localization
     await changeLanguage(page, setLanguage.en);
-    await page.waitForTimeout(2000);
     await authTwoFactorPage.sendCodeButton.click();
     await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.fieldRequired);
   });
@@ -182,12 +181,10 @@ test.describe("Authorization by login without phone number", () => {
     await authTwoFactorPage.phoneNumberInput.fill(phoneNumber3);
     await authTwoFactorPage.sendCodeButton.click();
     await authTwoFactorPage.enterCodeFromSMS(globalData.string1digit);
-    await page.waitForTimeout(2000);
     await expect(authTwoFactorPage.codeInputHelper).toHaveText(errorMessages.ua.minChar4);
     // Checking the error in the SMS code input in English localization
     await changeLanguage(page, setLanguage.en);
     await authTwoFactorPage.enterCodeFromSMS(globalData.string3digit);
-    await page.waitForTimeout(2000);
     await expect(authTwoFactorPage.codeInputHelper).toHaveText(errorMessages.en.minChar4);
   });
 
@@ -206,12 +203,41 @@ test.describe("Authorization by login without phone number", () => {
     await expect(authTwoFactorPage.codeInputHelper).toHaveText(errorMessages.en.wrongCode);
   });
 
-  //
+  test("Authorization by login with filling letters into SMS code field", async ({ page }) => {
+    await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
+    await page.waitForURL(authTwoFactorPage.pageUrl);
+    // Checking the error in the SMS code input in Ukrainian localization
+    await authTwoFactorPage.phoneNumberInput.fill(phoneNumber3);
+    await authTwoFactorPage.sendCodeButton.click();
+    await authTwoFactorPage.enterCodeFromSMS(globalData.string4letters);
+    await authTwoFactorPage.logInButton.click();
+    await expect(authTwoFactorPage.codeInputHelper).toHaveText(errorMessages.ua.fieldRequired);
+    await page.waitForTimeout(2000);
+    // Checking the error in the SMS code input in English localization
+    await changeLanguage(page, setLanguage.en);
+    await authTwoFactorPage.enterCodeFromSMS(globalData.string4letters);
+    await authTwoFactorPage.logInButton.click();
+    await expect(authTwoFactorPage.codeInputHelper).toHaveText(errorMessages.en.fieldRequired);
+    await page.waitForTimeout(2000);
+  });
 
-  /*
-
-	ввести буквы в коде
-	ввставить буквы в коде
-
-	*/
+  test("Authorization by login with entering letters into SMS code field", async ({ page }) => {
+    await loginPage.login(internetLogin3, globalData.defaultInternetPassword);
+    await page.waitForURL(authTwoFactorPage.pageUrl);
+    // Checking the error in the SMS code input in Ukrainian localization
+    await authTwoFactorPage.phoneNumberInput.fill(phoneNumber3);
+    await authTwoFactorPage.sendCodeButton.click();
+    await authTwoFactorPage.codeInputFirstDigit.click();
+    await page.keyboard.type(globalData.string4letters);
+    await authTwoFactorPage.logInButton.click();
+    await expect(authTwoFactorPage.codeInputHelper).toHaveText(errorMessages.ua.fieldRequired);
+    await page.waitForTimeout(2000);
+    // Checking the error in the SMS code input in English localization
+    await changeLanguage(page, setLanguage.en);
+    await authTwoFactorPage.codeInputFirstDigit.click();
+    await page.keyboard.type(globalData.string4letters);
+    await authTwoFactorPage.logInButton.click();
+    await expect(authTwoFactorPage.codeInputHelper).toHaveText(errorMessages.en.fieldRequired);
+    await page.waitForTimeout(2000);
+  });
 });
