@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 class LoginPage {
   private readonly page: Page;
@@ -24,6 +24,7 @@ class LoginPage {
   async login(username: string, password: string): Promise<void> {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
+    expect(this.loginButton).toBeEnabled;
     await this.loginButton.click();
   }
 

@@ -1,116 +1,116 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage, MainPage } from '../../pages';
-import { updatePassword, createBUser, changeLanguage } from '../../fixtures';
-import { setLanguage, errorMessages, globalData } from '../../testData';
+import { test, expect } from "@playwright/test";
+import { LoginPage, MainPage } from "../../pages";
+import { updatePassword, createBUser, changeLanguage } from "../../fixtures";
+import { setLanguage, errorMessages, globalData } from "../../testData";
 
-test.describe('Authorization by contract number and password', () => {
-	let loginPage: LoginPage;
-	let mainPage: MainPage;
-	let userID1: number;
-	let userID2: number;
-	let userID3: number;
+test.describe("Authorization by contract number and password", () => {
+  let loginPage: LoginPage;
+  let mainPage: MainPage;
+  let userID1: number;
+  let userID2: number;
+  let userID3: number;
 
-	test.beforeAll(async ({ browser }) => {
-		const context = await browser.newContext();
+  test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext();
 
-		// Create user with defaultPassword (6-digit password)
-		userID1 = await createBUser(context.request);
+    // Create user with defaultPassword (6-digit password)
+    userID1 = await createBUser(context.request);
 
-		// Create user with alterativePassword (digits and lowercase letters)
-		userID2 = await createBUser(context.request);
-		await updatePassword(context.request, userID2, globalData.alternativePassword);
+    // Create user with alterativePassword (digits and lowercase letters)
+    userID2 = await createBUser(context.request);
+    await updatePassword(context.request, userID2, globalData.alternativePassword);
 
-		// Create user with maxLengthPassword (16-character password)
-		userID3 = await createBUser(context.request);
-		await updatePassword(context.request, userID3, globalData.maxLengthPassword);
-	});
+    // Create user with maxLengthPassword (16-character password)
+    userID3 = await createBUser(context.request);
+    await updatePassword(context.request, userID3, globalData.maxLengthPassword);
+  });
 
-	test.beforeEach(async ({ page }) => {
-		loginPage = new LoginPage(page);
-		mainPage = new MainPage(page);
-		await loginPage.navigateToLoginPage();
-	});
+  test.beforeEach(async ({ page }) => {
+    loginPage = new LoginPage(page);
+    mainPage = new MainPage(page);
+    await loginPage.navigateToLoginPage();
+  });
 
-	test('Authorization by contract number and password with minimum length password', async ({ page }) => {
-		await loginPage.login(String(userID1), globalData.defaultPassword);
-		await page.waitForURL(mainPage.pageUrl);
-	});
+  test("Authorization by contract number and password with minimum length password", async ({ page }) => {
+    await loginPage.login(String(userID1), globalData.defaultPassword);
+    await page.waitForURL(mainPage.pageUrl);
+  });
 
-	test('Authorization by contract number and password with the maximum length password', async ({ page }) => {
-		await loginPage.login(String(userID3), globalData.maxLengthPassword);
-		await page.waitForURL(mainPage.pageUrl);
-	});
+  test("Authorization by contract number and password with the maximum length password", async ({ page }) => {
+    await loginPage.login(String(userID3), globalData.maxLengthPassword);
+    await page.waitForURL(mainPage.pageUrl);
+  });
 
-	test('Authorization by contract number and password case-sensitive password check UA', async () => {
-		await loginPage.login(String(userID2), globalData.alternativePassword.toUpperCase());
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
-	});
+  test("Authorization by contract number and password case-sensitive password check UA", async () => {
+    await loginPage.login(String(userID2), globalData.alternativePassword.toUpperCase());
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
+  });
 
-	test('Authorization by contract number and password case-sensitive password check EN', async ({ page }) => {
-		await changeLanguage(page, setLanguage.en);
-		await loginPage.login(String(userID2), globalData.alternativePassword.toUpperCase());
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.undefinedUser);
-	});
+  test("Authorization by contract number and password case-sensitive password check EN", async ({ page }) => {
+    await changeLanguage(page, setLanguage.en);
+    await loginPage.login(String(userID2), globalData.alternativePassword.toUpperCase());
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.undefinedUser);
+  });
 
-	test('Authorization by contract number and invalid short password UA', async () => {
-		await loginPage.login(String(userID1), globalData.invalid5DigitsPassword);
-		await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.passwordIsShort);
-	});
+  test("Authorization by contract number and invalid short password UA", async () => {
+    await loginPage.login(String(userID1), globalData.invalid5DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.minChar6);
+  });
 
-	test('Authorization by contract number and invalid short password EN', async ({ page }) => {
-		await changeLanguage(page, setLanguage.en);
-		await loginPage.login(String(userID1), globalData.invalid5DigitsPassword);
-		await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.passwordIsShort);
-	});
+  test("Authorization by contract number and invalid short password EN", async ({ page }) => {
+    await changeLanguage(page, setLanguage.en);
+    await loginPage.login(String(userID1), globalData.invalid5DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.minChar6);
+  });
 
-	test('Authorization by contract number and invalid long password UA', async () => {
-		await loginPage.login(String(userID1), globalData.invalid17DigitsPassword);
-		await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.passwordIsLong);
-	});
+  test("Authorization by contract number and invalid long password UA", async () => {
+    await loginPage.login(String(userID1), globalData.invalid17DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.maxChar16);
+  });
 
-	test('Authorization by contract number and invalid long password EN', async ({ page }) => {
-		await changeLanguage(page, setLanguage.en);
-		await loginPage.login(String(userID1), globalData.invalid17DigitsPassword);
-		await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.passwordIsLong);
-	});
+  test("Authorization by contract number and invalid long password EN", async ({ page }) => {
+    await changeLanguage(page, setLanguage.en);
+    await loginPage.login(String(userID1), globalData.invalid17DigitsPassword);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.maxChar16);
+  });
 
-	test('Authorization by contract number and password with swapped fields', async () => {
-		await loginPage.login(globalData.defaultPassword, String(userID1));
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
-	});
+  test("Authorization by contract number and password with swapped fields", async () => {
+    await loginPage.login(globalData.defaultPassword, String(userID1));
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.undefinedUser);
+  });
 
-	test('Authorization by contract number and password with empty inputs UA', async () => {
-		await loginPage.login(globalData.emptyString, globalData.emptyString);
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.fieldRequired);
-		await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.fieldRequired);
-	});
+  test("Authorization by contract number and password with empty inputs UA", async () => {
+    await loginPage.login(globalData.emptyString, globalData.emptyString);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.fieldRequired);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.ua.fieldRequired);
+  });
 
-	test('Authorization by contract number and password with empty inputs EN', async ({ page }) => {
-		await changeLanguage(page, setLanguage.en);
-		await loginPage.login(globalData.emptyString, globalData.emptyString);
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.fieldRequired);
-		await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.fieldRequired);
-	});
+  test("Authorization by contract number and password with empty inputs EN", async ({ page }) => {
+    await changeLanguage(page, setLanguage.en);
+    await loginPage.login(globalData.emptyString, globalData.emptyString);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.fieldRequired);
+    await expect(loginPage.passwordInputHelper).toContainText(errorMessages.en.fieldRequired);
+  });
 
-	test('Authorization by contract number with a space at the beginning UA', async () => {
-		await loginPage.login(` ${userID1}`, globalData.defaultPassword);
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidValue);
-	});
+  test("Authorization by contract number with a space at the beginning UA", async () => {
+    await loginPage.login(` ${userID1}`, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidValue);
+  });
 
-	test('Authorization by contract number with a space at the beginning EN', async ({ page }) => {
-		await changeLanguage(page, setLanguage.en);
-		await loginPage.login(` ${userID1}`, globalData.defaultPassword);
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
-	});
+  test("Authorization by contract number with a space at the beginning EN", async ({ page }) => {
+    await changeLanguage(page, setLanguage.en);
+    await loginPage.login(` ${userID1}`, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
+  });
 
-	test('Authorization by contract number with a space at the end UA', async () => {
-		await loginPage.login(`${userID1} `, globalData.defaultPassword);
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidValue);
-	});
+  test("Authorization by contract number with a space at the end UA", async () => {
+    await loginPage.login(`${userID1} `, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.ua.invalidValue);
+  });
 
-	test('Authorization by contract number with a space at the endEN', async ({ page }) => {
-		await changeLanguage(page, setLanguage.en);
-		await loginPage.login(`${userID1} `, globalData.defaultPassword);
-		await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
-	});
+  test("Authorization by contract number with a space at the endEN", async ({ page }) => {
+    await changeLanguage(page, setLanguage.en);
+    await loginPage.login(`${userID1} `, globalData.defaultPassword);
+    await expect(loginPage.usernameInputHelper).toContainText(errorMessages.en.invalidValue);
+  });
 });
