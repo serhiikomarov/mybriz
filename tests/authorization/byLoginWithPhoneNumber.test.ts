@@ -137,7 +137,7 @@ test.describe("Authorization by login with phone number", () => {
     await page.waitForTimeout(2000);
     await authTwoFactorPage.sendCodeButton.click();
     await expect(authTwoFactorPage.inputHelper).toContainText(errorMessages.ua.usedPhoneNumber);
-    // Checking the error in the phone number input in Ukrainian localization
+    // Checking the error in the phone number input in English localization
     await changeLanguage(page, setLanguage.en);
     await authTwoFactorPage.sendCodeButton.click();
     await expect(authTwoFactorPage.inputHelper).toContainText(errorMessages.en.usedPhoneNumber);
