@@ -1,5 +1,5 @@
 module.exports = {
 	fullyParallel: true,
-	workers: 1,
+	workers: 3,
 	//reporter: [["dot"], ["json", { outputFile: "test-results.json" }]],
 };
