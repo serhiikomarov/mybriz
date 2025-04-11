@@ -5,7 +5,6 @@ import { defaultIPTVAccountObj } from './createIPTVAccount.data';
 async function createIPTVAccount(request: any, userID: number, data?: any) {
 	const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/iptvs`;
 	const token = await getAuthToken(request);
-	console.log(token);
 	const response = await request.post(apiUrl, {
 		headers: {
 			'Authorization': `Bearer ${token}`,

@@ -1,5 +1,4 @@
 import { globalData } from '../../../../testData/global.data';
-const currentDate = new Date();
 
 const defaultUserCreateObj = {
 	AreaID: 0,
@@ -12,7 +11,7 @@ const defaultUserCreateObj = {
 	Password: globalData.defaultPassword,
 	LocationType: '1',
 	Type: '1',
-	Comment: `Created by Playwright autotest ${currentDate}`,
+	Comment: `Created by Playwright autotest ${new Date()}`,
 };
 
 export { defaultUserCreateObj };

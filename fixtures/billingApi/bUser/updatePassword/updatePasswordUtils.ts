@@ -4,7 +4,6 @@ import { getAuthToken } from '../../auth/authenticate/authUtils';
 async function updatePassword(request: any, userID: number, newPassword: string) {
 	const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/password/update`;
 	const token = await getAuthToken(request);
-	console.log(token);
 	const response = await request.put(apiUrl, {
 		headers: {
 			'Authorization': `Bearer ${token}`,

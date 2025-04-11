@@ -1,12 +1,10 @@
 import { expect } from '@playwright/test';
 import { getAuthToken } from '../../auth/authenticate/authUtils';
-import { generateLogin } from '../../../helpers';
 import { defaultInternetAccountObj } from './createInternetAccount.data';
 
 async function createInternetAccount(request: any, userID: number, login: string) {
 	const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/internets`;
 	const token = await getAuthToken(request);
-	console.log(token);
 	const response = await request.post(apiUrl, {
 		headers: {
 			'Authorization': `Bearer ${token}`,

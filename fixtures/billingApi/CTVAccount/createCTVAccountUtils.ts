@@ -5,7 +5,6 @@ import { defaultCTVAccountObj } from './createCTVAccount.data';
 async function createCTVAccount(request: any, userID: number, data?: any) {
 	const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/ctvs`;
 	const token = await getAuthToken(request);
-	console.log(token);
 	const response = await request.post(apiUrl, {
 		headers: {
 			'Authorization': `Bearer ${token}`,

@@ -1,6 +1,4 @@
-import { expect } from '@playwright/test';
 import { getAuthToken } from '../../auth/authenticate/authUtils';
-import { error } from 'console';
 
 /**
  * Get Email confirmation code

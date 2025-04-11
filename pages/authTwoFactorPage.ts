@@ -84,19 +84,6 @@ class AuthTwoFactorPage {
 		await this.page.goto(this.pageUrl);
 	}
 
-	// async enterCodeFromSMS(codeFromSMS: string) {
-	// 	if (Array.from(codeFromSMS)[0] != undefined) {
-	// 		await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[0]);
-	// 	} else if (Array.from(codeFromSMS)[1] != undefined) {
-	// 		await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[0]), await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[1]);
-	// 	} else if (Array.from(codeFromSMS)[2] != undefined) {
-	// 		await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[0]), await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[1]), await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[2]);
-	// 	} else if (Array.from(codeFromSMS)[3] != undefined) {
-	// 		await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[0]), await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[1]), await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[2]);
-	// 		await this.codeInputFirstDigit.fill(Array.from(codeFromSMS)[3]);
-	// 	}
-	// }
-
 	async enterCodeFromSMS(codeFromSMS: string) {
 		const inputs = [this.codeInputFirstDigit, this.codeInputSecondDigit, this.codeInputThirdDigit, this.codeInputFourthDigit];
 

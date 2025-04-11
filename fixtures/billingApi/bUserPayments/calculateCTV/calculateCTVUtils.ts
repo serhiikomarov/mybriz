@@ -4,7 +4,6 @@ import { getAuthToken } from '../../auth/authenticate/authUtils';
 async function calculateCTVAccount(request: any, userID: number, ctvAccountID: number) {
 	const apiUrl = `https://dev-bil-api.briz.ua/buser/${userID}/payments/calculate/ctv/${ctvAccountID}`;
 	const token = await getAuthToken(request);
-	console.log(token);
 	const response = await request.post(apiUrl, {
 		headers: {
 			'Authorization': `Bearer ${token}`,
