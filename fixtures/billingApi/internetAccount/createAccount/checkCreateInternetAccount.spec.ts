@@ -2,7 +2,6 @@ import { test } from '@playwright/test';
 import { createBUser } from '../../bUser/bUserCreate/bUserCreateUtils';
 import { generateLogin } from '../../../helpers';
 import { createInternetAccount, getInternetAccountID } from './createInternetAccountUtils';
-import { defaultInternetAccountObj } from './createInternetAccount.data';
 
 test.describe('Checking create Internet account function', () => {
 	let userID: number;

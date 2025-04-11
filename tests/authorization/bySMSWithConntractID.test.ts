@@ -105,18 +105,17 @@ test.describe('Authorization by SMS with contract ID', () => {
 	test('Authorization by SMS with empty and incorrect code UA EN', async ({ page }) => {
 		await authWithSMSPage.sendSMS(String(userForNegativeCases));
 		await authWithSMSCodePage.logInButton.click();
+		await page.waitForLoadState('networkidle');
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.fieldRequired);
 		await changeLanguage(page, setLanguage.en);
 		await authWithSMSCodePage.logInButton.click();
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.fieldRequired);
 		await changeLanguage(page, setLanguage.ua);
 		await authWithSMSCodePage.enterCodeFromSMS('9999');
-		await page.waitForTimeout(1000); // waiting until inputs will be filled
 		await authWithSMSCodePage.logInButton.click();
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.ua.invalidConfirmationCode);
 		await changeLanguage(page, setLanguage.en);
 		await authWithSMSCodePage.enterCodeFromSMS('9999');
-		await page.waitForTimeout(1000); // waiting until inputs will be filled
 		await authWithSMSCodePage.logInButton.click();
 		await expect(authWithSMSCodePage.inputHelper).toContainText(errorMessages.en.invalidConfirmationCode);
 	});
