@@ -108,6 +108,13 @@ class PaymentPage {
 	async navigateToPaymentPage(): Promise<void> {
 		await this.page.goto(this.pageUrl);
 	}
+
+	async setMonths(months: number): Promise<void> {
+		await this.monthsInput.click();
+		await this.page.keyboard.press('Control+A');
+		await this.page.keyboard.press('Backspace');
+		await this.page.keyboard.press(`${months}`);
+	}
 }
 
 export { PaymentPage };
