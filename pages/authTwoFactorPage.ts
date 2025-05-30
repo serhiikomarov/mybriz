@@ -47,7 +47,7 @@ class AuthTwoFactorPage {
 			phoneFormText: 'Send code to phone number:',
 			changePhoneNumberButton: 'Change',
 			sendCodeButtonText: 'Send code',
-			socialsText: 'or login with social networks',
+			socialsText: 'or log in with social networks',
 			loginButtonText: 'Log in',
 		},
 	};

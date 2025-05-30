@@ -12,7 +12,6 @@ const errorMessages = {
 		informingBySMSIsNotActive: 'Послуга SMS-інформування не активна для даного договору.',
 		invalidConfirmationCode: 'Введено неправильний код підтвердження.',
 		invalidPhoneNumber: 'Поле має бути коректним телефоном чи номером договору.',
-
 		usedPhoneNumber: 'Цей СМС-номер вже використовується.',
 		incorrectFormatPhoneNumber: 'Поле номер телефону має невірний формат',
 		wrongCode: 'Неправильний код.',

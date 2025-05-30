@@ -114,12 +114,12 @@ test.describe('Authorization by login without phone number', () => {
 		// Checking the error in the phone number input in Ukrainian localization
 		await authTwoFactorPage.phoneNumberInput.fill(globalData.incorrectFormatPhoneNumber);
 		await authTwoFactorPage.sendCodeButton.click();
-		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.incorrectFormatPhoneNumber);
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.ua.invalidValue);
 		// Checking the error in the phone number input in English localization
 		await changeLanguage(page, setLanguage.en);
 		await authTwoFactorPage.phoneNumberInput.fill(globalData.incorrectFormatPhoneNumber);
 		await authTwoFactorPage.sendCodeButton.click();
-		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.incorrectFormatPhoneNumber);
+		await expect(authTwoFactorPage.inputHelper).toHaveText(errorMessages.en.invalidValue);
 	});
 
 	test('Authorization by login with phone number from another account', async ({ page }) => {
