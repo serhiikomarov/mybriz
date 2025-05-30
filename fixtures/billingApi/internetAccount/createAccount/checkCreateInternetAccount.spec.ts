@@ -23,6 +23,6 @@ test.describe('Checking create Internet account function', () => {
 	test('Checking get Internet account function', async ({ browser }) => {
 		const context = await browser.newContext();
 		const accountID = await getInternetAccountID(context.request, userID, login);
-		console.log(`UserID: ${userID}, InetrnetAccountID: ${accountID}`);
+		console.log(`UserID: ${userID}, InternetAccountID: ${accountID}`);
 	});
 });
