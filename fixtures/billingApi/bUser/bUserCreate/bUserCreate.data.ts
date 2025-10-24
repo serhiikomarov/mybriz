@@ -20,13 +20,13 @@ const defaultUserCreateObj = {
 	Comment: `Created by Playwright autotest ${new Date()}`,
 };
 
-async function bUserConstructor(name: string, type: string) {
+async function bUserConstructor(name: string, type: string, streetID?: number, dom?: string, flat?: string) {
 	return {
 		AreaID: 0,
 		Name: name,
-		StreetID: 9,
-		Dom: '108',
-		Flat: '555',
+		StreetID: streetID,
+		Dom: dom,
+		Flat: flat,
 		DocType: 'residence_permit',
 		Passport: '888888888',
 		Password: globalData.defaultPassword,

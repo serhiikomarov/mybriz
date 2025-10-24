@@ -25,13 +25,13 @@ test.describe('Multi-account precondition', () => {
 		const context = await browser.newContext();
 
 		// Create Account #1 - Администратор
-		userID1 = await createBUser(context.request, await bUserConstructor('1 аккаунт - Администратор', '1'));
+		userID1 = await createBUser(context.request, await bUserConstructor('1 аккаунт - Администратор', '1', 74, '26', '666'));
 		internetLogin1 = generateLogin(10);
 		await createInternetAccount(context.request, userID1, internetLogin1);
 		console.log('\x1b[33m%s\x1b[0m', `Аккаунт 1 http://dbilling.briz.ua/Ru/billing/user/view.html?uid=${userID1}`);
 
 		// Create Account #2
-		userID2 = await createBUser(context.request, await bUserConstructor('2 аккаунт', '1'));
+		userID2 = await createBUser(context.request, await bUserConstructor('2 аккаунт', '1', 35, '11', '87'));
 		internetLogin2 = generateLogin(10);
 		const email2 = generateRandomEmail();
 		await addEmail(context.request, userID2, email2);
@@ -43,7 +43,7 @@ test.describe('Multi-account precondition', () => {
 		console.log('\x1b[33m%s\x1b[0m', `Аккаунт 2 http://dbilling.briz.ua/Ru/billing/user/view.html?uid=${userID2}, ОПЛАТИТЬ УСЛУГУ`);
 
 		// Create Account #3
-		userID3 = await createBUser(context.request, await bUserConstructor('3 аккаунт', '6'));
+		userID3 = await createBUser(context.request, await bUserConstructor('3 аккаунт', '6', 5, '24', '3'));
 		internetLogin3 = generateLogin(10);
 		await getInternetAccountID(context.request, userID3, internetLogin3);
 		const phoneNumber3 = generatePhoneNumber();
@@ -52,7 +52,7 @@ test.describe('Multi-account precondition', () => {
 		console.log('\x1b[33m%s\x1b[0m', `Аккаунт 3 http://dbilling.briz.ua/Ru/billing/user/view.html?uid=${userID3}`);
 
 		// Create Account #4
-		userID4 = await createBUser(context.request, await bUserConstructor('4 аккаунт', '1'));
+		userID4 = await createBUser(context.request, await bUserConstructor('4 аккаунт', '1', 116, '116', '121'));
 		internetLogin4 = generateLogin(10);
 		const email4 = generateRandomEmail();
 		await addEmail(context.request, userID4, email4);
@@ -64,7 +64,7 @@ test.describe('Multi-account precondition', () => {
 		console.log('\x1b[33m%s\x1b[0m', `Аккаунт 4 http://dbilling.briz.ua/Ru/billing/user/view.html?uid=${userID4}`);
 
 		// Create Account #5
-		userID5 = await createBUser(context.request, await bUserConstructor('5 аккаунт', '2'));
+		userID5 = await createBUser(context.request, await bUserConstructor('5 аккаунт', '2', 356, '2', '8'));
 		internetLogin5 = generateLogin(10);
 		const email5 = generateRandomEmail();
 		await addEmail(context.request, userID5, email5);
@@ -76,7 +76,7 @@ test.describe('Multi-account precondition', () => {
 		console.log('\x1b[33m%s\x1b[0m', `Аккаунт 5 http://dbilling.briz.ua/Ru/billing/user/view.html?uid=${userID5}`);
 
 		// Create Account #6
-		userID6 = await createBUser(context.request, await bUserConstructor('6 аккаунт', '1'));
+		userID6 = await createBUser(context.request, await bUserConstructor('6 аккаунт', '1', 331, '100', '55'));
 		internetLogin6 = generateLogin(10);
 		const email6 = generateRandomEmail();
 		await addEmail(context.request, userID6, email6);
@@ -88,7 +88,7 @@ test.describe('Multi-account precondition', () => {
 		console.log('\x1b[33m%s\x1b[0m', `Аккаунт 6 http://dbilling.briz.ua/Ru/billing/user/view.html?uid=${userID6}, ДОБАВИТЬ В ДРУГОЙ МУЛЬТИАККАУНТ`);
 
 		// Create Account #7
-		userID7 = await createBUser(context.request, await bUserConstructor('7 аккаунт', '1'));
+		userID7 = await createBUser(context.request, await bUserConstructor('7 аккаунт', '1', 899, '1', '30'));
 		console.log('\x1b[33m%s\x1b[0m', `Аккаунт 7 http://dbilling.briz.ua/Ru/billing/user/view.html?uid=${userID7}`);
 	});
 
