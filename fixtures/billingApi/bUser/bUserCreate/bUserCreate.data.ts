@@ -20,7 +20,7 @@ const defaultUserCreateObj = {
 	Comment: `Created by Playwright autotest ${new Date()}`,
 };
 
-async function bUserConstructor(name: string, type: string, streetID?: number, dom?: string, flat?: string) {
+async function bUserConstructor(name: string, type: string, streetID: number, dom: string, flat: string) {
 	return {
 		AreaID: 0,
 		Name: name,
